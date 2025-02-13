@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/create UserRepository">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/AuthenticationFailedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/UserAlreadyExistsException.java" afterDir="false" />
+    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AuthenticationServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/animo/animorise/JwtServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/JwtService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +40,10 @@
     &quot;accountId&quot;: &quot;dc52ee48-d747-4f1b-b86c-ced6f6c32128&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -59,6 +63,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JUnit.AuthenticationServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.JwtServiceTest.executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -68,6 +74,8 @@
     &quot;git-widget-placeholder&quot;: &quot;feature/user-authentication&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Youcode/IdeaProjects/AnimoRise/src/test/java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Youcode/Desktop/Angular/RecycleHub&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -82,7 +90,42 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.animo.animorise" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.JwtServiceTest">
+    <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AnimoRise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.animo.animorise.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.animo.animorise" />
+      <option name="MAIN_CLASS_NAME" value="com.animo.animorise.AuthenticationServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JwtServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AnimoRise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.animo.animorise.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.animo.animorise" />
+      <option name="MAIN_CLASS_NAME" value="com.animo.animorise.JwtServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnimoRiseApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AnimoRise" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.animo.animorise.AnimoRiseApplication" />
@@ -90,6 +133,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JwtServiceTest" />
+        <item itemvalue="JUnit.AuthenticationServiceTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -111,6 +160,9 @@
       <workItem from="1736260123393" duration="100000" />
       <workItem from="1736260387561" duration="13904000" />
       <workItem from="1737533452880" duration="2791000" />
+      <workItem from="1738242207381" duration="1321000" />
+      <workItem from="1738590687623" duration="27000" />
+      <workItem from="1739452695647" duration="2554000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -136,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736325673552</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
+      <option name="closed" value="true" />
+      <created>1737896732778</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737896732778</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +206,7 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="jwtAuth/create User entity" />
     <MESSAGE value="jwtAuth/create UserRepository" />
-    <option name="LAST_COMMIT_MESSAGE" value="jwtAuth/create UserRepository" />
+    <MESSAGE value="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService" />
+    <option name="LAST_COMMIT_MESSAGE" value="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService" />
   </component>
 </project>
