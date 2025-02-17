@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AuthenticationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/JwtServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/AnimalController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/AnimalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AnimalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AnimalServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/AuthenticationFailedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/AuthenticationFailedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/UserAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/UserAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AuthenticationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AuthenticationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AuthenticationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/JwtServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/animo/animorise/JwtServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -36,21 +32,21 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
+    &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;Mohammedaminox&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Mohammedaminox/Animorise&quot;,
     &quot;accountId&quot;: &quot;dc52ee48-d747-4f1b-b86c-ced6f6c32128&quot;
-  }
-}</component>
+    }
+    }</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
+    &quot;isMigrated&quot;: true
+    }</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -59,9 +55,9 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
+    &quot;customColor&quot;: &quot;&quot;,
+    &quot;associatedIndex&quot;: 3
+    }</component>
   <component name="ProjectId" id="2rIr5ZLeqJZt6oQ75fqXVmyfNNH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -78,7 +74,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.AnimoRiseApplication.executor": "Run",
-    "git-widget-placeholder": "feature/user-authentication",
+    "git-widget-placeholder": "feature/user-fonctionality",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/Youcode/IdeaProjects/AnimoRise/src/test/java",
@@ -102,7 +98,7 @@
       <recent name="com.animo.animorise" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.JwtServiceTest">
+  <component name="RunManager" selected="Spring Boot.AnimoRiseApplication">
     <configuration name="AuthenticationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="AnimoRise" />
       <extension name="coverage">
@@ -216,5 +212,16 @@
     <MESSAGE value="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService" />
     <MESSAGE value="commit workspace.xml" />
     <option name="LAST_COMMIT_MESSAGE" value="commit workspace.xml" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AnimalServiceImpl.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

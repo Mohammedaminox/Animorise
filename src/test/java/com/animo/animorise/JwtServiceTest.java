@@ -10,7 +10,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.security.Key;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,7 @@ class JwtServiceTest {
                 .build();
 
         // Set the secret key and expiration time for testing
-        jwtService.setSecretKey("32df3224cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b");
+        jwtService.setSecretKey("32df322324cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b");
         jwtService.setJwtExpiration(3600000L); // 1 hour expiration
     }
 
