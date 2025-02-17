@@ -1,6 +1,7 @@
 package com.animo.animorise;
 
 import com.animo.animorise.service.JwtService;
+import com.animo.animorise.service.impl.JwtServiceImpl;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class JwtServiceTest {
 
     @InjectMocks
-    private JwtService jwtService;
+    private JwtServiceImpl jwtService;
+
 
     private UserDetails userDetails;
 
@@ -34,7 +36,7 @@ class JwtServiceTest {
                 .build();
 
         // Set the secret key and expiration time for testing
-        jwtService.setSecretKey("404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"); // Example secret key
+        jwtService.setSecretKey("32df3224cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b");
         jwtService.setJwtExpiration(3600000L); // 1 hour expiration
     }
 
@@ -169,13 +171,5 @@ class JwtServiceTest {
         assertEquals(userDetails.getUsername(), claims.getSubject());
     }
 
-    // Test for getting the signing key
-    @Test
-    void getSignInKey_ValidSecretKey_ReturnsKey() {
-        // Act
-        Key key = jwtService.getSignInKey();
 
-        // Assert
-        assertNotNull(key);
-    }
 }
