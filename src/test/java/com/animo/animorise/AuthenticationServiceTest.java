@@ -7,6 +7,7 @@ import com.animo.animorise.exception.AuthenticationFailedException;
 import com.animo.animorise.exception.UserAlreadyExistsException;
 import com.animo.animorise.repository.UserRepository;
 import com.animo.animorise.service.AuthenticationService;
+import com.animo.animorise.service.impl.AuthenticationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -33,7 +34,7 @@ class AuthenticationServiceTest {
     private AuthenticationManager authenticationManager;
 
     @InjectMocks
-    private AuthenticationService authenticationService;
+    private AuthenticationServiceImpl authenticationServiceimpl;
 
     @BeforeEach
     void setUp() {
@@ -54,7 +55,7 @@ class AuthenticationServiceTest {
         when(userRepository.save(any())).thenReturn(new User());
 
         // Act
-        User user = authenticationService.signup(registerUserDto);
+        User user = authenticationServiceimpl.signup(registerUserDto);
 
         // Assert
         assertNotNull(user);
@@ -71,7 +72,7 @@ class AuthenticationServiceTest {
         when(userRepository.findByEmail(any())).thenReturn(Optional.of(new User()));
 
         // Act & Assert
-        assertThrows(UserAlreadyExistsException.class, () -> authenticationService.signup(registerUserDto));
+        assertThrows(UserAlreadyExistsException.class, () -> authenticationServiceimpl.signup(registerUserDto));
     }
 
     // Test for successful authentication
@@ -85,7 +86,7 @@ class AuthenticationServiceTest {
         when(userRepository.findByEmail(any())).thenReturn(Optional.of(new User()));
 
         // Act
-        User user = authenticationService.authenticate(loginUserDto);
+        User user = authenticationServiceimpl.authenticate(loginUserDto);
 
         // Assert
         assertNotNull(user);
@@ -103,6 +104,6 @@ class AuthenticationServiceTest {
                 .when(authenticationManager).authenticate(any());
 
         // Act & Assert
-        assertThrows(AuthenticationFailedException.class, () -> authenticationService.authenticate(loginUserDto));
+        assertThrows(AuthenticationFailedException.class, () -> authenticationServiceimpl.authenticate(loginUserDto));
     }
 }
