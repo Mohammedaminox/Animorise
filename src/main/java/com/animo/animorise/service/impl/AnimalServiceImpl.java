@@ -1,15 +1,19 @@
 package com.animo.animorise.service.impl;
 
 import com.animo.animorise.entity.Animal;
+import com.animo.animorise.dto.AnimalDto;
+import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.entity.User;
 import com.animo.animorise.repository.AnimalRepository;
 import com.animo.animorise.repository.UserRepository;
 import com.animo.animorise.service.AnimalService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,37 +22,75 @@ public class AnimalServiceImpl implements AnimalService {
     private final UserRepository userRepository;
 
     @Override
-    public List<Animal> getAnimalsByOwner(Integer ownerId) {
-        return animalRepository.findByOwnerId(ownerId);
+    public List<AnimalDto> getAnimalsByOwner(Integer ownerId) {
+        return animalRepository.findByOwnerId(ownerId)
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Animal> getAnimalById(Long id) {
-        return animalRepository.findById(id);
+    public Optional<AnimalDto> getAnimalById(Long id) {
+        return animalRepository.findById(id)
+                .map(this::convertToDto);
     }
 
     @Override
-    public Animal addAnimal(Animal animal, Integer ownerId) {
+    public AnimalDto addAnimal(AnimalDto animalDto, Integer ownerId) {
         User owner = userRepository.findById(ownerId)
                 .orElseThrow(() -> new RuntimeException("Owner not found!"));
+
+        Animal animal = convertToEntity(animalDto);
         animal.setOwner(owner);
-        return animalRepository.save(animal);
+        Animal savedAnimal = animalRepository.save(animal);
+
+        return convertToDto(savedAnimal);
     }
 
+    @Transactional
     @Override
-    public Animal updateAnimal(Long id, Animal updatedAnimal) {
+    public AnimalDto updateAnimal(Long id, AnimalDto updatedAnimalDto) {
         return animalRepository.findById(id).map(animal -> {
-            animal.setName(updatedAnimal.getName());
-            animal.setSpecies(updatedAnimal.getSpecies());
-            animal.setRace(updatedAnimal.getRace());
-            animal.setAge(updatedAnimal.getAge());
-            animal.setGender(updatedAnimal.getGender());
-            animal.setVaccinated(updatedAnimal.isVaccinated());
-            animal.setHealthStatus(updatedAnimal.getHealthStatus());
-            animal.setPhotoUrl(updatedAnimal.getPhotoUrl());
-            animal.setMedicalHistory(updatedAnimal.getMedicalHistory());
-            return animalRepository.save(animal);
+            animal.setName(updatedAnimalDto.getName());
+            animal.setSpecies(updatedAnimalDto.getSpecies());
+            animal.setRace(updatedAnimalDto.getRace());
+            animal.setAge(updatedAnimalDto.getAge());
+            animal.setGender(updatedAnimalDto.getGender());
+            animal.setVaccinated(updatedAnimalDto.isVaccinated());
+            animal.setHealthStatus(updatedAnimalDto.getHealthStatus());
+            animal.setPhotoUrl(updatedAnimalDto.getPhotoUrl());
+
+            Animal updatedAnimal = animalRepository.save(animal);
+            return convertToDto(updatedAnimal);
         }).orElseThrow(() -> new RuntimeException("Animal not found!"));
+    }
+
+    private AnimalDto convertToDto(Animal animal) {
+        return new AnimalDto(
+                animal.getId(),
+                animal.getName(),
+                animal.getSpecies(),
+                animal.getRace(),
+                animal.getAge(),
+                animal.getGender(),
+                animal.isVaccinated(),
+                animal.getHealthStatus(),
+                animal.getPhotoUrl(),
+                animal.getOwner().getId() // Prevent lazy-loading issues
+        );
+    }
+    // Converts a DTO to entity
+    private Animal convertToEntity(AnimalDto dto) {
+        Animal animal = new Animal();
+        animal.setName(dto.getName());
+        animal.setSpecies(dto.getSpecies());
+        animal.setRace(dto.getRace());
+        animal.setAge(dto.getAge());
+        animal.setGender(dto.getGender());
+        animal.setVaccinated(dto.isVaccinated());
+        animal.setHealthStatus(dto.getHealthStatus());
+        animal.setPhotoUrl(dto.getPhotoUrl());
+        return animal;
     }
 
     @Override
