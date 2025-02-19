@@ -2,8 +2,8 @@ package com.animo.animorise;
 
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.Animal;
-import com.animo.animorise.entity.User;
-import com.animo.animorise.exception.AnimalNotFoundException;
+import com.animo.animorise.entity.HealthStatus;
+import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.repository.AnimalRepository;
 import com.animo.animorise.repository.UserRepository;
 import com.animo.animorise.service.impl.AnimalServiceImpl;
@@ -42,7 +42,7 @@ class AnimalServiceImplTest {
         animal.setName("Tom");
         animal.setSpecies("Cat");
 
-        animalDto = new AnimalDto(1L, "Tom", "Cat", "Siamese", 3, "Male", true, "Healthy", "url", 1);
+        animalDto = new AnimalDto(1L, "Tom", "Cat", "Siamese", 3, "Male", true, HealthStatus.Healthy, "url", 1);
     }
 
     @Test

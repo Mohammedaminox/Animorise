@@ -4,6 +4,7 @@ import com.animo.animorise.entity.Animal;
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.entity.User;
+import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.repository.AnimalRepository;
 import com.animo.animorise.repository.UserRepository;
 import com.animo.animorise.service.AnimalService;
@@ -62,7 +63,7 @@ public class AnimalServiceImpl implements AnimalService {
 
             Animal updatedAnimal = animalRepository.save(animal);
             return convertToDto(updatedAnimal);
-        }).orElseThrow(() -> new RuntimeException("Animal not found!"));
+        }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));
     }
 
     private AnimalDto convertToDto(Animal animal) {
@@ -76,9 +77,10 @@ public class AnimalServiceImpl implements AnimalService {
                 animal.isVaccinated(),
                 animal.getHealthStatus(),
                 animal.getPhotoUrl(),
-                animal.getOwner().getId() // Prevent lazy-loading issues
+                (animal.getOwner() != null) ? animal.getOwner().getId() : null // Check for null before calling getId()
         );
     }
+
     // Converts a DTO to entity
     private Animal convertToEntity(AnimalDto dto) {
         Animal animal = new Animal();
