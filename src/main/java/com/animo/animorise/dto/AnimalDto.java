@@ -1,7 +1,11 @@
 package com.animo.animorise.dto;
 
+import com.animo.animorise.entity.Gender;
 import com.animo.animorise.entity.HealthStatus;
 import lombok.*;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,10 +16,10 @@ public class AnimalDto {
     private String name;
     private String species;
     private String race;
-    private int age;
-    private String gender;
+    private Gender gender;
     private boolean vaccinated;
     private HealthStatus healthStatus;
     private String photoUrl;
+    private LocalDate birthDate;
     private Integer ownerId; // Include only the owner's ID, not the full object
 }

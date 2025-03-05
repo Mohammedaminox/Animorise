@@ -2,6 +2,7 @@ package com.animo.animorise;
 
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.Animal;
+import com.animo.animorise.entity.Gender;
 import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.repository.AnimalRepository;
@@ -15,6 +16,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +47,10 @@ class AnimalServiceImplTest {
         animal.setName("Tom");
         animal.setSpecies("Cat");
 
-        animalDto = new AnimalDto(1L, "Tom", "Cat", "Siamese", 3, "Male", true, HealthStatus.Healthy, "url", 1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse("11-11-2023", formatter);
+
+        animalDto = new AnimalDto(1L, "Tom", "Cat", "Siamese", Gender.Male, true, HealthStatus.Healthy, "url",date, 1);
     }
 
     @Test

@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -31,11 +32,9 @@ public class Animal {
     @Column(nullable = false)
     private String race;
 
-    @Column(nullable = false)
-    private int age;
 
     @Column(nullable = false)
-    private String gender; // Example: Male, Female, Unknown
+    private Gender gender; // Example: Male, Female, Unknown
 
     @Column(nullable = false)
     private boolean vaccinated;
@@ -46,6 +45,9 @@ public class Animal {
 
     @Column(nullable = true)
     private String photoUrl; // Store URL to animal's photo
+
+    @Column(nullable = false)
+    private LocalDate birthDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)

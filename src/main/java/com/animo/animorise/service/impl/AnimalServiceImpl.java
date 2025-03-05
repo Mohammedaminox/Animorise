@@ -55,11 +55,11 @@ public class AnimalServiceImpl implements AnimalService {
             animal.setName(updatedAnimalDto.getName());
             animal.setSpecies(updatedAnimalDto.getSpecies());
             animal.setRace(updatedAnimalDto.getRace());
-            animal.setAge(updatedAnimalDto.getAge());
             animal.setGender(updatedAnimalDto.getGender());
             animal.setVaccinated(updatedAnimalDto.isVaccinated());
             animal.setHealthStatus(updatedAnimalDto.getHealthStatus());
             animal.setPhotoUrl(updatedAnimalDto.getPhotoUrl());
+            animal.setBirthDate(updatedAnimalDto.getBirthDate());
 
             Animal updatedAnimal = animalRepository.save(animal);
             return convertToDto(updatedAnimal);
@@ -72,11 +72,11 @@ public class AnimalServiceImpl implements AnimalService {
                 animal.getName(),
                 animal.getSpecies(),
                 animal.getRace(),
-                animal.getAge(),
                 animal.getGender(),
                 animal.isVaccinated(),
                 animal.getHealthStatus(),
                 animal.getPhotoUrl(),
+                animal.getBirthDate(),
                 (animal.getOwner() != null) ? animal.getOwner().getId() : null // Check for null before calling getId()
         );
     }
@@ -87,11 +87,11 @@ public class AnimalServiceImpl implements AnimalService {
         animal.setName(dto.getName());
         animal.setSpecies(dto.getSpecies());
         animal.setRace(dto.getRace());
-        animal.setAge(dto.getAge());
         animal.setGender(dto.getGender());
         animal.setVaccinated(dto.isVaccinated());
         animal.setHealthStatus(dto.getHealthStatus());
         animal.setPhotoUrl(dto.getPhotoUrl());
+        animal.setBirthDate(dto.getBirthDate());
         return animal;
     }
 
