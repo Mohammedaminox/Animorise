@@ -1,12 +1,10 @@
 package com.animo.animorise.service.impl;
 
-import com.animo.animorise.entity.Animal;
+import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
-import com.animo.animorise.entity.HealthStatus;
-import com.animo.animorise.entity.User;
+import com.animo.animorise.entity.*;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
-import com.animo.animorise.repository.AnimalRepository;
-import com.animo.animorise.repository.UserRepository;
+import com.animo.animorise.repository.*;
 import com.animo.animorise.service.AnimalService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +19,8 @@ import java.util.stream.Collectors;
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
     private final UserRepository userRepository;
+    private final ActivityRepository activityRepository;
+    private final ActivityTypeRepository activityTypeRepository;
 
     @Override
     public List<AnimalDto> getAnimalsByOwner(Integer ownerId) {
@@ -77,11 +77,10 @@ public class AnimalServiceImpl implements AnimalService {
                 animal.getHealthStatus(),
                 animal.getPhotoUrl(),
                 animal.getBirthDate(),
-                (animal.getOwner() != null) ? animal.getOwner().getId() : null // Check for null before calling getId()
+                (animal.getOwner() != null) ? animal.getOwner().getId() : null
         );
     }
 
-    // Converts a DTO to entity
     private Animal convertToEntity(AnimalDto dto) {
         Animal animal = new Animal();
         animal.setName(dto.getName());
@@ -97,6 +96,9 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public void deleteAnimal(Long id) {
+        if (!animalRepository.existsById(id)) {
+            throw new AnimalNotFoundException("Animal not found with ID: " + id);
+        }
         animalRepository.deleteById(id);
     }
 
@@ -115,5 +117,39 @@ public class AnimalServiceImpl implements AnimalService {
             Animal updatedAnimal = animalRepository.save(animal);
             return convertToDto(updatedAnimal);
         }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));
+    }
+
+    @Transactional
+    @Override
+    public ActivityDto addActivity(ActivityDto activityDto) {
+        Animal animal = animalRepository.findById(activityDto.getAnimalId())
+                .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + activityDto.getAnimalId()));
+
+        ActivityType activityType = activityTypeRepository.findById(activityDto.getActivityTypeId())
+                .orElseThrow(() -> new RuntimeException("ActivityType not found with ID: " + activityDto.getActivityTypeId()));
+
+        Activity activity = new Activity();
+        activity.setAnimal(animal);
+        activity.setType(activityType);
+        activity.setDescription(activityDto.getDescription());
+        activity.setRepeat(activityDto.isRepeat());
+        activity.setScheduleStart(activityDto.getScheduleStart());
+        activity.setRepeatEvery(activityDto.getRepeatEvery());
+        activity.setRepeatUnit(activityDto.getRepeatUnit());
+
+        Activity savedActivity = activityRepository.save(activity);
+        return convertToDto(savedActivity);
+    }
+
+    private ActivityDto convertToDto(Activity activity) {
+        ActivityDto dto = new ActivityDto();
+        dto.setAnimalId((activity.getAnimal() != null) ? activity.getAnimal().getId() : null);
+        dto.setActivityTypeId((activity.getType() != null) ? activity.getType().getId() : null);
+        dto.setDescription(activity.getDescription());
+        dto.setRepeat(activity.isRepeat());
+        dto.setScheduleStart(activity.getScheduleStart());
+        dto.setRepeatEvery(activity.getRepeatEvery());
+        dto.setRepeatUnit(activity.getRepeatUnit());
+        return dto;
     }
 }

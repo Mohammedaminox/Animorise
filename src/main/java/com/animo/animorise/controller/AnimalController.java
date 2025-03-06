@@ -1,5 +1,6 @@
 package com.animo.animorise.controller;
 
+import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.service.AnimalService;
@@ -49,6 +50,13 @@ public class AnimalController {
         animalService.deleteAnimal(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/activities")
+    public ResponseEntity<ActivityDto> addActivity(@RequestBody ActivityDto activityDto) {
+        return ResponseEntity.ok(animalService.addActivity(activityDto));
+    }
+
 
     @PreAuthorize("hasRole('VETERIANAIRE')")
     @GetMapping

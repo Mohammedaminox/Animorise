@@ -1,5 +1,6 @@
 package com.animo.animorise.service;
 
+import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.Animal;
 import com.animo.animorise.entity.HealthStatus;
@@ -16,4 +17,7 @@ public interface AnimalService {
 
     List<AnimalDto> getAllAnimals();
     AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus);
+
+    ActivityDto addActivity(ActivityDto activityDto);
+
 }
