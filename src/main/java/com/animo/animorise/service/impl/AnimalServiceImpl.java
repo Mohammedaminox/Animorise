@@ -99,4 +99,21 @@ public class AnimalServiceImpl implements AnimalService {
     public void deleteAnimal(Long id) {
         animalRepository.deleteById(id);
     }
+
+    @Override
+    public List<AnimalDto> getAllAnimals() {
+        return animalRepository.findAll()
+                .stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus) {
+        return animalRepository.findById(id).map(animal -> {
+            animal.setHealthStatus(healthStatus);
+            Animal updatedAnimal = animalRepository.save(animal);
+            return convertToDto(updatedAnimal);
+        }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));
+    }
 }

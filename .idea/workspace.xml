@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/AnimalDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/AnimalDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AnimalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AnimalServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AnimalServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AnimalServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +198,7 @@
       <workItem from="1739867035317" duration="8000" />
       <workItem from="1739867090565" duration="8000" />
       <workItem from="1739907745313" duration="18127000" />
-      <workItem from="1741106892100" duration="15088000" />
+      <workItem from="1741106892100" duration="16414000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

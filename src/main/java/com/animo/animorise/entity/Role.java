@@ -1,7 +1,7 @@
 package com.animo.animorise.entity;
 
 public enum Role {
-    ADMIN,
+//    ADMIN,
     USER,
     VETERINERE
 }

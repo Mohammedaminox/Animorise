@@ -36,7 +36,7 @@ public class Animal {
     @Column(nullable = false)
     private Gender gender; // Example: Male, Female, Unknown
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private boolean vaccinated;
 
     @Enumerated(EnumType.STRING)

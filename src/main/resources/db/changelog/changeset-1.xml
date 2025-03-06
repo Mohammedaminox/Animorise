@@ -23,7 +23,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="vaccinated" type="boolean">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="health_status" type="varchar(255)"/>
             <column name="photo_url" type="varchar(255)"/>

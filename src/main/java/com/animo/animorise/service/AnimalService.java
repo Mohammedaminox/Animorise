@@ -2,6 +2,7 @@ package com.animo.animorise.service;
 
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.Animal;
+import com.animo.animorise.entity.HealthStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,4 +13,7 @@ public interface AnimalService {
     AnimalDto addAnimal(AnimalDto animalDto, Integer ownerId);
     AnimalDto updateAnimal(Long id, AnimalDto updatedAnimalDto);
     void deleteAnimal(Long id);
+
+    List<AnimalDto> getAllAnimals();
+    AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus);
 }
