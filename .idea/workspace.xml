@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService" />
+    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/ActivityTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/ActivityTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +16,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
         <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -196,7 +199,7 @@
       <workItem from="1739867035317" duration="8000" />
       <workItem from="1739867090565" duration="8000" />
       <workItem from="1739907745313" duration="18127000" />
-      <workItem from="1741106892100" duration="26708000" />
+      <workItem from="1741106892100" duration="37858000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

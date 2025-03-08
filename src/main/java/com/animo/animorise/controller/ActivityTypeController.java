@@ -25,14 +25,14 @@ public class ActivityTypeController {
 
 
     @PreAuthorize("hasRole('VETERINERE')")
-    @PostMapping
+    @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<ActivityTypeDto> createActivityType(@ModelAttribute ActivityTypeDto activityTypeDto) {
         handleFileUpload(activityTypeDto);
         return ResponseEntity.ok(activityTypeService.createActivityType(activityTypeDto));
     }
 
     @PreAuthorize("hasRole('VETERINERE')")
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = "multipart/form-data")
     public ResponseEntity<ActivityTypeDto> updateActivityType(@PathVariable Long id, @ModelAttribute ActivityTypeDto activityTypeDto) {
         handleFileUpload(activityTypeDto);
         return ResponseEntity.ok(activityTypeService.updateActivityType(id, activityTypeDto));
