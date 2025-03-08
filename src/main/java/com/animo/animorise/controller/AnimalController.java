@@ -19,13 +19,13 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @GetMapping("/owner/{ownerId}")
-    @PreAuthorize("hasRole('USER') or hasRole('VETERIANAIRE')")
+    @PreAuthorize("hasRole('USER') or hasRole('VETERIANERE')")
     public ResponseEntity<List<AnimalDto>> getAnimalsByOwner(@PathVariable Integer ownerId) {
         return ResponseEntity.ok(animalService.getAnimalsByOwner(ownerId));
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('VETERIANAIRE')")
+    @PreAuthorize("hasRole('USER') or hasRole('VETERIANERE')")
     public ResponseEntity<AnimalDto> getAnimalById(@PathVariable Long id) {
         Optional<AnimalDto> animal = animalService.getAnimalById(id);
         return animal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -58,13 +58,13 @@ public class AnimalController {
     }
 
 
-    @PreAuthorize("hasRole('VETERIANAIRE')")
+    @PreAuthorize("hasRole('VETERIANERE')")
     @GetMapping
     public ResponseEntity<List<AnimalDto>> getAllAnimals() {
         return ResponseEntity.ok(animalService.getAllAnimals());
     }
 
-    @PreAuthorize("hasRole('VETERIANAIRE')")
+    @PreAuthorize("hasRole('VETERIANERE')")
     @PutMapping("/{id}/health-status")
     public ResponseEntity<AnimalDto> updateHealthStatus(@PathVariable Long id, @RequestBody HealthStatus healthStatus) {
         return ResponseEntity.ok(animalService.updateHealthStatus(id, healthStatus));

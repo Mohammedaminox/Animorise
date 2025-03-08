@@ -3,6 +3,7 @@ package com.animo.animorise.service.impl;
 import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.entity.*;
+import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.repository.*;
 import com.animo.animorise.service.AnimalService;
@@ -126,8 +127,7 @@ public class AnimalServiceImpl implements AnimalService {
                 .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + activityDto.getAnimalId()));
 
         ActivityType activityType = activityTypeRepository.findById(activityDto.getActivityTypeId())
-                .orElseThrow(() -> new RuntimeException("ActivityType not found with ID: " + activityDto.getActivityTypeId()));
-
+                .orElseThrow(() -> new ActivityTypeNotFoundException("ActivityType not found with id: " +  activityDto.getActivityTypeId()));
         Activity activity = new Activity();
         activity.setAnimal(animal);
         activity.setType(activityType);

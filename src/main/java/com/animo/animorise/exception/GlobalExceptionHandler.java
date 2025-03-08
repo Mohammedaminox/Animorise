@@ -1,5 +1,7 @@
 package com.animo.animorise.exception;
 
+import com.animo.animorise.exception.activity.ActivityNotFoundException;
+import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.exception.animal.UserNotFoundException;
 import io.jsonwebtoken.JwtException;
@@ -41,6 +43,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AnimalNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<Object> handleAnimalNotFoundException(AnimalNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(ActivityNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleActivityNotFoundException(ActivityNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(ActivityTypeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleActivityTypeNotFoundException(ActivityTypeNotFoundException ex) {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
