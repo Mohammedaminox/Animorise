@@ -14,7 +14,7 @@ import java.util.Date;
 public class AnimalDto {
     private Long id;
     private String name;
-    private String species;
+    private Long speciesId;
     private String race;
     private Gender gender;
     private boolean vaccinated;
@@ -22,4 +22,6 @@ public class AnimalDto {
     private String photoUrl;
     private LocalDate birthDate;
     private Integer ownerId; // Include only the owner's ID, not the full object
+
+
 }

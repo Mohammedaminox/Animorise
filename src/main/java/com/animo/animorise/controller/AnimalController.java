@@ -2,6 +2,8 @@ package com.animo.animorise.controller;
 
 import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
+import com.animo.animorise.dto.HealthStatusUpdateRequest;
+import com.animo.animorise.dto.VaccinationStatusUpdateRequest;
 import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.service.AnimalService;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +21,13 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @GetMapping("/owner/{ownerId}")
-    @PreAuthorize("hasRole('USER') or hasRole('VETERIANERE')")
+    @PreAuthorize("hasRole('USER') or hasRole('VETERINERE')")
     public ResponseEntity<List<AnimalDto>> getAnimalsByOwner(@PathVariable Integer ownerId) {
         return ResponseEntity.ok(animalService.getAnimalsByOwner(ownerId));
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('USER') or hasRole('VETERIANERE')")
+    @PreAuthorize("hasRole('USER') or hasRole('VETERINERE')")
     public ResponseEntity<AnimalDto> getAnimalById(@PathVariable Long id) {
         Optional<AnimalDto> animal = animalService.getAnimalById(id);
         return animal.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -36,7 +38,6 @@ public class AnimalController {
     public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto, @PathVariable Integer ownerId) {
         return ResponseEntity.ok(animalService.addAnimal(animalDto, ownerId));
     }
-
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/{id}")
@@ -57,16 +58,28 @@ public class AnimalController {
         return ResponseEntity.ok(animalService.addActivity(activityDto));
     }
 
-
-    @PreAuthorize("hasRole('VETERIANERE')")
+    @PreAuthorize("hasRole('VETERINERE')")
     @GetMapping
     public ResponseEntity<List<AnimalDto>> getAllAnimals() {
         return ResponseEntity.ok(animalService.getAllAnimals());
     }
 
-    @PreAuthorize("hasRole('VETERIANERE')")
+//    @PreAuthorize("hasRole('VETERINERE')")
+//    @PutMapping("/{id}/health-status")
+//    public ResponseEntity<AnimalDto> updateHealthStatus(@PathVariable Long id, @RequestBody HealthStatus healthStatus) {
+//        return ResponseEntity.ok(animalService.updateHealthStatus(id, healthStatus));
+//    }
+
+    @PreAuthorize("hasRole('VETERINERE')")
     @PutMapping("/{id}/health-status")
-    public ResponseEntity<AnimalDto> updateHealthStatus(@PathVariable Long id, @RequestBody HealthStatus healthStatus) {
-        return ResponseEntity.ok(animalService.updateHealthStatus(id, healthStatus));
+    public ResponseEntity<AnimalDto> updateHealthStatus(@PathVariable Long id, @RequestBody HealthStatusUpdateRequest request) {
+        return ResponseEntity.ok(animalService.updateHealthStatus(id, request.getHealthStatus()));
     }
+
+    @PreAuthorize("hasRole('VETERINERE')")
+    @PutMapping("/{id}/vaccinated")
+    public ResponseEntity<AnimalDto> updateVaccinationStatus(@PathVariable Long id, @RequestBody VaccinationStatusUpdateRequest request) {
+        return ResponseEntity.ok(animalService.updateVaccinationStatus(id, request.isVaccinated()));
+    }
+
 }

@@ -2,6 +2,7 @@ package com.animo.animorise.service.impl;
 
 import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
+import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.entity.*;
 import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
@@ -22,6 +23,7 @@ public class AnimalServiceImpl implements AnimalService {
     private final UserRepository userRepository;
     private final ActivityRepository activityRepository;
     private final ActivityTypeRepository activityTypeRepository;
+    private final SpeciesRepository speciesRepository;
 
     @Override
     public List<AnimalDto> getAnimalsByOwner(Integer ownerId) {
@@ -54,7 +56,8 @@ public class AnimalServiceImpl implements AnimalService {
     public AnimalDto updateAnimal(Long id, AnimalDto updatedAnimalDto) {
         return animalRepository.findById(id).map(animal -> {
             animal.setName(updatedAnimalDto.getName());
-            animal.setSpecies(updatedAnimalDto.getSpecies());
+            animal.setSpecies(speciesRepository.findById(updatedAnimalDto.getSpeciesId())
+                    .orElseThrow(() -> new RuntimeException("Species not found with id: " + updatedAnimalDto.getSpeciesId())));
             animal.setRace(updatedAnimalDto.getRace());
             animal.setGender(updatedAnimalDto.getGender());
             animal.setVaccinated(updatedAnimalDto.isVaccinated());
@@ -71,8 +74,7 @@ public class AnimalServiceImpl implements AnimalService {
         return new AnimalDto(
                 animal.getId(),
                 animal.getName(),
-                animal.getSpecies(),
-                animal.getRace(),
+                animal.getSpecies().getId(),                animal.getRace(),
                 animal.getGender(),
                 animal.isVaccinated(),
                 animal.getHealthStatus(),
@@ -85,7 +87,8 @@ public class AnimalServiceImpl implements AnimalService {
     private Animal convertToEntity(AnimalDto dto) {
         Animal animal = new Animal();
         animal.setName(dto.getName());
-        animal.setSpecies(dto.getSpecies());
+        animal.setSpecies(speciesRepository.findById(dto.getSpeciesId())
+                .orElseThrow(() -> new RuntimeException("Species not found with id: " + dto.getSpeciesId())));
         animal.setRace(dto.getRace());
         animal.setGender(dto.getGender());
         animal.setVaccinated(dto.isVaccinated());
@@ -115,6 +118,15 @@ public class AnimalServiceImpl implements AnimalService {
     public AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus) {
         return animalRepository.findById(id).map(animal -> {
             animal.setHealthStatus(healthStatus);
+            Animal updatedAnimal = animalRepository.save(animal);
+            return convertToDto(updatedAnimal);
+        }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));
+    }
+
+    @Override
+    public AnimalDto updateVaccinationStatus(Long id, boolean vaccinated) {
+        return animalRepository.findById(id).map(animal -> {
+            animal.setVaccinated(vaccinated);
             Animal updatedAnimal = animalRepository.save(animal);
             return convertToDto(updatedAnimal);
         }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));

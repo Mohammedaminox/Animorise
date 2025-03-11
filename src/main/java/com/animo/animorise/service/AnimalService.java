@@ -17,6 +17,7 @@ public interface AnimalService {
 
     List<AnimalDto> getAllAnimals();
     AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus);
+    AnimalDto updateVaccinationStatus(Long id, boolean vaccinated);
 
     ActivityDto addActivity(ActivityDto activityDto);
 

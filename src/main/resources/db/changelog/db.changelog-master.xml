@@ -8,4 +8,6 @@
     <include file="db/changelog/changeset-1.xml"/>
     <include file="db/changelog/changeset-2.xml"/>
     <include file="db/changelog/changeset-3.xml"/>
+    <include file="db/changelog/changeset-4.xml"/>
+    <include file="db/changelog/changeset-5.xml"/>
 </databaseChangeLog>

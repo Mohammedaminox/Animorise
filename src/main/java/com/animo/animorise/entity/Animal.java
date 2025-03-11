@@ -26,13 +26,14 @@ public class Animal {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String species; // Example: Dog, Cat, etc.
+    @OneToOne
+    @JoinColumn(name = "species_id", nullable = false)
+    private Species species;
 
     @Column(nullable = false)
     private String race;
 
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender; // Example: Male, Female, Unknown
 
