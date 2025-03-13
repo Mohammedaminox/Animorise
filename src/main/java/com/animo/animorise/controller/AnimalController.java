@@ -64,11 +64,6 @@ public class AnimalController {
         return ResponseEntity.ok(animalService.getAllAnimals());
     }
 
-//    @PreAuthorize("hasRole('VETERINERE')")
-//    @PutMapping("/{id}/health-status")
-//    public ResponseEntity<AnimalDto> updateHealthStatus(@PathVariable Long id, @RequestBody HealthStatus healthStatus) {
-//        return ResponseEntity.ok(animalService.updateHealthStatus(id, healthStatus));
-//    }
 
     @PreAuthorize("hasRole('VETERINERE')")
     @PutMapping("/{id}/health-status")

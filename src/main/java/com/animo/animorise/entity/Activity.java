@@ -20,9 +20,24 @@ public class Activity {
     @JoinColumn(name = "activity_type_id", nullable = false)
     private ActivityType type;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     private String description;
     private boolean isRepeat;
-    private LocalDateTime scheduleStart;
+    private LocalDateTime scheduleStart = LocalDateTime.now();
     private int repeatEvery;
     @Enumerated(EnumType.STRING)
-    private RepeatUnit repeatUnit;}
+    private RepeatUnit repeatUnit;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    private boolean notified;
+
+    public enum Status {
+        PENDING,
+        COMPLETED,
+        CANCELED
+    }
+}

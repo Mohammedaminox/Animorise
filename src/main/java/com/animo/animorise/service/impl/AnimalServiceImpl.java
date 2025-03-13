@@ -148,6 +148,8 @@ public class AnimalServiceImpl implements AnimalService {
         activity.setScheduleStart(activityDto.getScheduleStart());
         activity.setRepeatEvery(activityDto.getRepeatEvery());
         activity.setRepeatUnit(activityDto.getRepeatUnit());
+        activity.setStatus(Activity.Status.PENDING);
+        activity.setUser(animal.getOwner());
 
         Activity savedActivity = activityRepository.save(activity);
         return convertToDto(savedActivity);
