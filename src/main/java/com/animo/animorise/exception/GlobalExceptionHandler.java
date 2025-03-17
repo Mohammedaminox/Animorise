@@ -4,6 +4,10 @@ import com.animo.animorise.exception.activity.ActivityNotFoundException;
 import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.exception.animal.UserNotFoundException;
+import com.animo.animorise.exception.species.SpeciesNotFoundException;
+import com.animo.animorise.exception.user.AuthenticationFailedException;
+import com.animo.animorise.exception.user.OwnerNotFoundException;
+import com.animo.animorise.exception.user.UserAlreadyExistsException;
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +62,18 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
+    @ExceptionHandler(OwnerNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleOwnerFoundException(OwnerNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
+    @ExceptionHandler(SpeciesNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleSpeciesNotFoundException(SpeciesNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     @ExceptionHandler(AuthenticationFailedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ResponseEntity<Object> handleAuthenticationFailedException(AuthenticationFailedException ex) {
@@ -75,4 +91,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleGenericException(Exception ex) {
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred: " + ex.getMessage());
     }
+
+
 }

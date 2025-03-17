@@ -1,4 +1,4 @@
-package com.animo.animorise.exception;
+package com.animo.animorise.exception.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

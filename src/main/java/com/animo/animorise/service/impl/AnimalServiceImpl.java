@@ -6,6 +6,8 @@ import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.entity.*;
 import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
+import com.animo.animorise.exception.species.SpeciesNotFoundException;
+import com.animo.animorise.exception.user.OwnerNotFoundException;
 import com.animo.animorise.repository.*;
 import com.animo.animorise.service.AnimalService;
 import jakarta.transaction.Transactional;
@@ -42,8 +44,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public AnimalDto addAnimal(AnimalDto animalDto, Integer ownerId) {
         User owner = userRepository.findById(ownerId)
-                .orElseThrow(() -> new RuntimeException("Owner not found!"));
-
+                .orElseThrow(() -> new OwnerNotFoundException("Owner not found with ID: " + ownerId));
         Animal animal = convertToEntity(animalDto);
         animal.setOwner(owner);
         Animal savedAnimal = animalRepository.save(animal);
@@ -57,7 +58,7 @@ public class AnimalServiceImpl implements AnimalService {
         return animalRepository.findById(id).map(animal -> {
             animal.setName(updatedAnimalDto.getName());
             animal.setSpecies(speciesRepository.findById(updatedAnimalDto.getSpeciesId())
-                    .orElseThrow(() -> new RuntimeException("Species not found with id: " + updatedAnimalDto.getSpeciesId())));
+                    .orElseThrow(() -> new SpeciesNotFoundException("Species not found with ID: " + updatedAnimalDto.getSpeciesId())));
             animal.setRace(updatedAnimalDto.getRace());
             animal.setGender(updatedAnimalDto.getGender());
             animal.setVaccinated(updatedAnimalDto.isVaccinated());
@@ -88,7 +89,7 @@ public class AnimalServiceImpl implements AnimalService {
         Animal animal = new Animal();
         animal.setName(dto.getName());
         animal.setSpecies(speciesRepository.findById(dto.getSpeciesId())
-                .orElseThrow(() -> new RuntimeException("Species not found with id: " + dto.getSpeciesId())));
+                .orElseThrow(() -> new SpeciesNotFoundException("Species not found with ID: " + dto.getSpeciesId())));
         animal.setRace(dto.getRace());
         animal.setGender(dto.getGender());
         animal.setVaccinated(dto.isVaccinated());

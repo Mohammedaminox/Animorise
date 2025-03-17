@@ -1,12 +1,13 @@
+// src/main/java/com/animo/animorise/service/impl/ActivitySchedulerServiceImpl.java
 package com.animo.animorise.service.impl;
 
 import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.entity.Activity;
 import com.animo.animorise.repository.ActivityRepository;
 import com.animo.animorise.service.ActivitySchedulerService;
-import com.animo.animorise.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,8 @@ public class ActivitySchedulerServiceImpl implements ActivitySchedulerService {
     private final ActivityRepository activityRepository;
     private final NotificationServiceImpl notificationServiceImpl;
 
-    @Scheduled(fixedRate = 60000) // Runs every minute
+    @Async
+    @Scheduled(fixedRate = 900000) // Runs every 15 minutes
     @Override
     public void checkAndNotifyActivities() {
         LocalDateTime now = LocalDateTime.now();
@@ -29,15 +31,6 @@ public class ActivitySchedulerServiceImpl implements ActivitySchedulerService {
             activityRepository.save(activity);
         }
     }
-
-//    @Scheduled(fixedRate = 60000) // Runs every minute
-//    @Override
-//    public void checkAndNotifyCompletedActivities() {
-//        List<Activity> completedActivities = activityRepository.findAllByStatus(Activity.Status.COMPLETED);
-//        for (Activity activity : completedActivities) {
-//            notificationServiceImpl.notifyUserOfCompletion(convertToDto(activity));
-//        }
-//    }
 
     private ActivityDto convertToDto(Activity activity) {
         ActivityDto dto = new ActivityDto();

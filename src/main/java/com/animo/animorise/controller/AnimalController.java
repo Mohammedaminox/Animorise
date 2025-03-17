@@ -4,7 +4,6 @@ import com.animo.animorise.dto.ActivityDto;
 import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.dto.HealthStatusUpdateRequest;
 import com.animo.animorise.dto.VaccinationStatusUpdateRequest;
-import com.animo.animorise.entity.HealthStatus;
 import com.animo.animorise.service.AnimalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
