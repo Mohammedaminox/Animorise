@@ -1,6 +1,6 @@
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
-import { LandingComponent } from './features/landing/landing.component';
+import { LandingComponent } from './features/landing-page/landing/landing.component';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -11,12 +11,12 @@ export const routes: Routes = [
       {
         path: 'login',
         loadComponent: () => import('./features/auth/login/login.component')
-          .then(m => m.LoginComponent)
+          .then(c => c.LoginComponent)
       },
       {
         path: 'register',
         loadComponent: () => import('./features/auth/register/register.component')
-          .then(m => m.RegisterComponent)
+          .then(c => c.RegisterComponent)
       }
     ]
   },
@@ -24,6 +24,6 @@ export const routes: Routes = [
     path: 'dashboard',
     canActivate: [authGuard],
     loadComponent: () => import('./features/dashboard/dashboard.component')
-      .then(m => m.DashboardComponent)
+      .then(c => c.DashboardComponent)
   }
 ];

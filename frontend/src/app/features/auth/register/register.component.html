@@ -1,1 +1,77 @@
-<p>register works!</p>
+<section class="relative flex justify-center items-center min-h-screen px-6 py-12">
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-teal-500 via-purple-500 to-pink-400"></div>
+
+  <!-- Floating Paw Prints -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="paw absolute top-16 left-10 opacity-10 animate-bounce">
+      🐾
+    </div>
+    <div class="paw absolute bottom-20 right-20 opacity-10 animate-spin">
+      🐾
+    </div>
+  </div>
+
+  <!-- Registration Card -->
+  <div class="relative z-10 w-full max-w-lg bg-white/20 backdrop-blur-xl rounded-2xl shadow-lg p-8 border border-white/30">
+    <h2 class="text-3xl font-extrabold text-white text-center">Join PetCare Today! 🐶🐱</h2>
+    <p class="text-white/80 text-center mt-2">Create an account and start managing your pet's health effortlessly.</p>
+
+    <form class="mt-6 space-y-4" [formGroup]="registerForm" (ngSubmit)="register()">
+      <div>
+        <label class="block text-white">Your Name</label>
+        <input
+          formControlName="fullName"
+          type="text"
+          placeholder="Enter your name"
+          class="w-full px-4 py-3 rounded-lg bg-white/80 focus:ring-2 focus:ring-teal-300"
+        />
+        <small *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" class="text-red-500">
+          Name is required (min 3 characters).
+        </small>
+      </div>
+
+      <div>
+        <label class="block text-white">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          placeholder="Enter your email"
+          class="w-full px-4 py-3 rounded-lg bg-white/80 focus:ring-2 focus:ring-teal-300"
+        />
+        <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-red-500">
+          Enter a valid email.
+        </small>
+      </div>
+
+      <div>
+        <label class="block text-white">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          placeholder="Enter your password"
+          class="w-full px-4 py-3 rounded-lg bg-white/80 focus:ring-2 focus:ring-teal-300"
+        />
+        <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500">
+          Password must be at least 6 characters.
+        </small>
+      </div>
+
+      <!-- Error Message -->
+      <p *ngIf="errorMessage" class="text-red-500">{{ errorMessage }}</p>
+
+      <button
+        type="submit"
+        class="w-full mt-4 bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-3 rounded-lg shadow-lg transition duration-300"
+        [disabled]="registerForm.invalid"
+      >
+        🐾 Register Now
+      </button>
+    </form>
+
+
+    <p class="text-center text-white/80 mt-4">Already have an account?
+      <a routerLink="/auth/login" routerLinkActive="active" class="text-teal-300 hover:text-white transition">Login</a>
+    </p>
+  </div>
+</section>
