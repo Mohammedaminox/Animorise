@@ -1,0 +1,36 @@
+<aside class="w-64 bg-gradient-to-br from-gray-900 via-gray-700 to-gray-600 text-white flex flex-col shadow-lg transform transition-all ease-in-out duration-300">
+  <!-- Sidebar Header -->
+  <div class="p-6 text-center text-3xl font-semibold tracking-tight transition-all duration-300">
+    <span class="text-4xl">🐾</span> <span class="text-gray-300">PetCare</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex flex-col space-y-4 p-6 mt-6">
+    <a routerLink="/dashboard" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
+      Dashboard
+    </a>
+
+    <a routerLink="/pets" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
+      My Pets
+    </a>
+
+    <a routerLink="/appointments" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
+      Appointments
+    </a>
+
+    <a routerLink="/settings" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
+      Settings
+    </a>
+  </nav>
+
+  <!-- Logout Button -->
+  <button (click)="logout()"
+          class="absolute bottom-16 left-0 right-0 mx-6 p-3 bg-red-600/80 rounded-lg text-base font-semibold transition-all duration-300 ease-in-out hover:bg-red-700 active:scale-95 flex items-center justify-center shadow-lg">
+    Logout
+  </button>
+
+  <!-- Footer -->
+  <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-xs font-medium text-gray-400">
+    Your Trusted Pet Companion
+  </div>
+</aside>
