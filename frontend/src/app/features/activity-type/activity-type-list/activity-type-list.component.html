@@ -1,0 +1,38 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">🐾 Manage your ActivityTypes</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div *ngFor="let activityType of activityTypeList"
+         class="group relative bg-white rounded-xl shadow-md p-5 transition-all duration-300 hover:shadow-lg hover:scale-105 flex flex-col items-center text-center">
+
+      <!-- Image -->
+      <img *ngIf="activityType.iconPath"
+           [src]="'http://localhost:8088/images/' + activityType.iconPath"
+           alt="ActivityType Icon"
+           class="w-20 h-20 object-cover rounded-full border-2 border-indigo-500 shadow-sm">
+
+      <!-- Name -->
+      <h3 class="text-lg font-medium text-gray-800 mt-3">{{ activityType.name }}</h3>
+
+      <!-- Actions -->
+      <div class="flex gap-3 mt-4">
+        <button (click)="editActivityType(activityType.id!)"
+                class="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-sm hover:bg-blue-600 transition-all">
+          Edit
+        </button>
+
+        <button (click)="deleteActivityType(activityType.id!)"
+                class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-sm hover:bg-red-600 transition-all">
+          Delete
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Floating Action Button -->
+<button (click)="openActivityTypeForm()"
+        class="fixed bottom-6 right-6 bg-indigo-600 p-5 rounded-full shadow-lg text-white text-2xl transition-transform duration-300 hover:scale-110 hover:shadow-xl focus:outline-none">
+  ➕
+</button>

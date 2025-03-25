@@ -1,36 +1,50 @@
-<aside class="w-64 bg-gradient-to-br from-gray-900 via-gray-700 to-gray-600 text-white flex flex-col shadow-lg transform transition-all ease-in-out duration-300">
+<aside class="w-72 bg-white/90 backdrop-blur-lg shadow-xl rounded-r-3xl text-gray-900 flex flex-col transform transition-all duration-300 ease-in-out">
   <!-- Sidebar Header -->
-  <div class="p-6 text-center text-3xl font-semibold tracking-tight transition-all duration-300">
-    <span class="text-4xl">🐾</span> <span class="text-gray-300">PetCare</span>
+  <div class="p-6 text-center text-3xl font-semibold tracking-tight flex items-center justify-center space-x-2">
+    <span class="text-4xl">🐾</span>
+    <span class="text-indigo-600">PetCare</span>
   </div>
 
   <!-- Navigation -->
-  <nav class="flex flex-col space-y-4 p-6 mt-6">
-    <a routerLink="/dashboard" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
-      Dashboard
+  <nav class="flex flex-col space-y-4 p-6 mt-4">
+    <a routerLink="/dashboard/home" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>🏠</span> <span>Dashboard</span>
     </a>
 
-    <a routerLink="/pets" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
-      My Pets
+    <a routerLink="/pets" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>🐶</span> <span>My Pets</span>
     </a>
 
-    <a routerLink="/appointments" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
-      Appointments
+    <a routerLink="/dashboard/species" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>🦴</span> <span>My Species</span>
     </a>
 
-    <a routerLink="/settings" class="p-3 rounded-md text-base font-medium transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white">
-      Settings
+    <a routerLink="/dashboard/activityType" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>🦴</span> <span>My ActivityTypes</span>
+    </a>
+
+    <a routerLink="/appointments" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>📅</span> <span>Appointments</span>
+    </a>
+
+    <a routerLink="/settings" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>⚙️</span> <span>Settings</span>
     </a>
   </nav>
 
   <!-- Logout Button -->
   <button (click)="logout()"
-          class="absolute bottom-16 left-0 right-0 mx-6 p-3 bg-red-600/80 rounded-lg text-base font-semibold transition-all duration-300 ease-in-out hover:bg-red-700 active:scale-95 flex items-center justify-center shadow-lg">
-    Logout
+          class="absolute bottom-16 left-0 right-0 mx-6 p-4 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl text-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-95 hover:shadow-2xl hover:from-indigo-600 hover:to-pink-600 active:scale-90 flex items-center justify-center gap-3 shadow-lg shadow-indigo-900/30">
+  <span class="text-2xl opacity-90 transition-all duration-300 ease-in-out group-hover:rotate-[-8deg]">
+    🔑
+  </span>
+    <span class="tracking-wide">Sign Out</span>
   </button>
 
+
+
   <!-- Footer -->
-  <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-xs font-medium text-gray-400">
-    Your Trusted Pet Companion
+  <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-sm font-medium text-gray-500">
+    Your Trusted Pet Companion 🐕‍🦺
   </div>
 </aside>

@@ -1,0 +1,29 @@
+<div class="container mx-auto p-6 bg-white rounded-xl shadow-md max-w-md">
+  <h2 class="text-xl font-semibold text-gray-900 mb-4 text-center">
+    {{ activityTypeId ? 'Edit ActivityType' : 'Add ActivityType' }}
+  </h2>
+
+  <form [formGroup]="activityTypeForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <!-- Name Field -->
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+      <input id="name" type="text" formControlName="name"
+             class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+    </div>
+
+    <!-- Icon Upload -->
+    <div>
+      <label for="icon" class="block text-sm font-medium text-gray-700">Icon</label>
+      <input id="icon" type="file" (change)="onFileChange($event)"
+             class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button type="submit"
+              class="px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all">
+        {{ activityTypeId ? 'Update' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</div>

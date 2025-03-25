@@ -25,6 +25,7 @@ public class ActivityTypeServiceImpl implements ActivityTypeService {
         return convertToDto(savedActivityType);
     }
 
+
     @Override
     public ActivityTypeDto updateActivityType(Long id, ActivityTypeDto activityTypeDto) {
         ActivityType activityType = activityTypeRepository.findById(id)

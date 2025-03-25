@@ -39,6 +39,7 @@ public class SecurityConfiguration {
 
                 // Authorization rules
                 .authorizeHttpRequests(auth -> {
+                      auth.requestMatchers("/images/**").permitAll() ;// 🔹 Allow access to images
                     auth.requestMatchers("/auth/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
@@ -58,7 +59,8 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:8081")); //remenber 8088
+        configuration.setAllowedOrigins(List.of("http://localhost:8088"));
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
         configuration.setAllowedMethods(List.of("*")); // 🔹 Allow all HTTP methods
         configuration.setAllowedHeaders(List.of("*")); // 🔹 Allow all headers
 

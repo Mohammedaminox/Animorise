@@ -66,15 +66,15 @@ public class SpeciesServiceImpl implements SpeciesService {
         return dto;
     }
 
-    private String storeFile(MultipartFile file) {
-        try {
-            if (file.isEmpty()) {
-                throw new RuntimeException("Failed to store empty file.");
-            }
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
-            return file.getOriginalFilename();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to store file.", e);
-        }
-    }
+//    private String storeFile(MultipartFile file) {
+//        try {
+//            if (file.isEmpty()) {
+//                throw new RuntimeException("Failed to store empty file.");
+//            }
+//            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+//            return file.getOriginalFilename();
+//        } catch (IOException e) {
+//            throw new RuntimeException("Failed to store file.", e);
+//        }
+//    }
 }
