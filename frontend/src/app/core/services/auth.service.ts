@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 interface AuthResponse {
   token: string;
   expiresIn: number; // Time in seconds
+  user: { role: string }; // Single role
 }
 
 @Injectable({
@@ -15,6 +16,9 @@ interface AuthResponse {
 export class AuthService {
   private readonly API_URL = 'http://localhost:8088/auth';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private userSubject = new BehaviorSubject<{ role: string } | null>(null); //  role
+
+  user$ = this.userSubject.asObservable(); // Expose user$ observable
 
   constructor(
     private http: HttpClient,
@@ -23,6 +27,7 @@ export class AuthService {
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.isAuthenticatedSubject.next(this.hasValidSession());
+      this.userSubject.next(this.getUserFromSession()); // Initialize user subject
     }
   }
 
@@ -35,9 +40,20 @@ export class AuthService {
     return false;
   }
 
+  private getUserFromSession(): { role: string } | null {
+    if (isPlatformBrowser(this.platformId)) {
+      const user = sessionStorage.getItem('user');
+      return user ? JSON.parse(user) : null;
+    }
+    return null;
+  }
+
   login(email: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/login`, { email, password }).pipe(
-      tap((response) => this.storeSession(response)),
+      tap((response) => {
+        console.log('AuthResponse:', response); // Log the response
+        this.storeSession(response);
+      }),
       catchError(this.handleError)
     );
   }
@@ -53,6 +69,7 @@ export class AuthService {
       sessionStorage.clear();
     }
     this.isAuthenticatedSubject.next(false);
+    this.userSubject.next(null); // Clear user subject
     this.router.navigate(['/auth/login']);
   }
 
@@ -65,8 +82,10 @@ export class AuthService {
       const expirationTime = new Date().getTime() + response.expiresIn * 1000;
       sessionStorage.setItem('token', response.token);
       sessionStorage.setItem('expiresAt', expirationTime.toString());
+      sessionStorage.setItem('user', JSON.stringify(response.user)); // Store user information
     }
     this.isAuthenticatedSubject.next(true);
+    this.userSubject.next(response.user); // Update user subject
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

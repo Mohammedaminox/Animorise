@@ -75,7 +75,10 @@ public class AnimalServiceImpl implements AnimalService {
         return new AnimalDto(
                 animal.getId(),
                 animal.getName(),
-                animal.getSpecies().getId(),                animal.getRace(),
+                animal.getSpecies().getId(),
+                animal.getSpecies().getName(), // Add speciesName
+                animal.getSpecies().getIconPath(),
+                animal.getRace(),
                 animal.getGender(),
                 animal.isVaccinated(),
                 animal.getHealthStatus(),

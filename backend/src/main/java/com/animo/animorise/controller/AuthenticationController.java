@@ -9,6 +9,8 @@ import com.animo.animorise.service.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
@@ -35,7 +37,8 @@ public class AuthenticationController {
 
         LoginResponse loginResponse = new LoginResponse()
                 .setToken(jwtToken)
-                .setExpiresIn(jwtService.getExpirationTime());
+                .setExpiresIn(jwtService.getExpirationTime())
+                .setUser(Map.of("role", authenticatedUser.getRole().name()));
 
         return ResponseEntity.ok(loginResponse);
     }

@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/activity-types")
@@ -22,7 +23,6 @@ import java.util.List;
 public class ActivityTypeController {
     private final ActivityTypeService activityTypeService;
 
-//    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
     private static final String UPLOAD_DIR = "backend/uploads/";
 
 
@@ -50,6 +50,12 @@ public class ActivityTypeController {
     @GetMapping
     public ResponseEntity<List<ActivityTypeDto>> getAllActivityTypes() {
         return ResponseEntity.ok(activityTypeService.getAllActivityTypes());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ActivityTypeDto> getActivityTypeById(@PathVariable Long id) {
+        Optional<ActivityTypeDto> activityType = activityTypeService.getActivityTypeById(id);
+        return activityType.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     private void handleFileUpload(ActivityTypeDto activityTypeDto) {

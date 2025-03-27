@@ -1,6 +1,7 @@
 package com.animo.animorise.controller;
 
 import com.animo.animorise.dto.ActivityTypeDto;
+import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.service.SpeciesService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/species")
@@ -50,6 +52,12 @@ public class SpeciesController {
     @GetMapping
     public ResponseEntity<List<SpeciesDto>> getAllSpecies() {
         return ResponseEntity.ok(speciesService.getAllSpecies());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<SpeciesDto> getSpeciesById(@PathVariable Long id) {
+        Optional<SpeciesDto> species = speciesService.getSpeciesById(id);
+        return species.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     private void handleFileUpload(SpeciesDto speciesDto) {

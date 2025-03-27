@@ -1,5 +1,6 @@
 package com.animo.animorise.service.impl;
 
+import com.animo.animorise.dto.AnimalDto;
 import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.entity.Species;
 import com.animo.animorise.repository.SpeciesRepository;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,6 +58,12 @@ public class SpeciesServiceImpl implements SpeciesService {
                 .stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<SpeciesDto> getSpeciesById(Long id) {
+        return speciesRepository.findById(id)
+                .map(this::convertToDto);
     }
 
     private SpeciesDto convertToDto(Species species) {

@@ -15,6 +15,8 @@ public class AnimalDto {
     private Long id;
     private String name;
     private Long speciesId;
+    private String speciesName;
+    private String speciesIcon;
     private String race;
     private Gender gender;
     private boolean vaccinated;

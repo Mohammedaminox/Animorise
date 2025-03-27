@@ -1,6 +1,7 @@
 package com.animo.animorise.service.impl;
 
 import com.animo.animorise.dto.ActivityTypeDto;
+import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.entity.ActivityType;
 import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.repository.ActivityTypeRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +52,12 @@ public class ActivityTypeServiceImpl implements ActivityTypeService {
                 .stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<ActivityTypeDto> getActivityTypeById(Long id) {
+        return activityTypeRepository.findById(id)
+                .map(this::convertToDto);
     }
 
     private ActivityTypeDto convertToDto(ActivityType activityType) {

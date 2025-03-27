@@ -6,85 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/AnimoRiseApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/ApplicationConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/JwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/SchedulerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/config/SecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/ActivityTypeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/AnimalController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/AuthenticationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/RendezVousController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/SpeciesController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/controller/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/ActivityDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/ActivityTypeDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/AnimalDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/HealthStatusUpdateRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/LoginUserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/RegisterUserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/RendezVousDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/RendezVousRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/SpeciesDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/dto/VaccinationStatusUpdateRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/ActivityType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Animal.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Gender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/HealthStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/RendezVous.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/RepeatUnit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/Species.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/activity/ActivityNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/activity/ActivityTypeNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/animal/AnimalNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/animal/UserNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/species/SpeciesNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/user/AuthenticationFailedException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/user/OwnerNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/exception/user/UserAlreadyExistsException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/ActivityRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/ActivityTypeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/AnimalRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/RendezVousRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/SpeciesRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/response/LoginResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/ActivitySchedulerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/ActivityTypeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AnimalService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/AuthenticationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/EmailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/NotificationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/RendezVousService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/SpeciesService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/ActivitySchedulerServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/ActivityTypeServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AnimalServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/AuthenticationServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/EmailServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/JwtServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/NotificationServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/RendezVousServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/animo/animorise/service/impl/SpeciesServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/changeset-5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/changelog/db.changelog-master.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/sof.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/sofrem.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/umlsc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AnimalServiceImplTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AnimoRiseApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/AuthenticationServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/animo/animorise/JwtServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/core/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/dashboard/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dashboard/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/species/species-form/species-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/species/species-form/species-form.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,8 +21,9 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -149,17 +75,18 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.AnimoRiseApplication.executor": "Run",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "front/customize-dashboard",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/Youcode/IdeaProjects/AnimoRise/src/test/java",
-    "last_opened_file_path": "C:/Users/Youcode/IdeaProjects/AnimoRise",
+    "last_opened_file_path": "C:/Users/Youcode/Downloads/petcare.management",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\Youcode\\IdeaProjects\\AnimoRise\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -169,6 +96,13 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Youcode\IdeaProjects\AnimoRise\frontend\src\app\core" />
+      <recent name="C:\Users\Youcode\IdeaProjects\AnimoRise\frontend\src\app" />
+      <recent name="C:\Users\Youcode\IdeaProjects\AnimoRise\frontend\src\app\dashboard" />
+      <recent name="C:\Users\Youcode\IdeaProjects\AnimoRise\frontend\src\app\features\landing-page" />
+      <recent name="C:\Users\Youcode\IdeaProjects\AnimoRise\frontend\src\app\features" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.animo.animorise" />
     </key>
@@ -282,6 +216,8 @@
       <workItem from="1741860496628" duration="683000" />
       <workItem from="1741861201696" duration="236000" />
       <workItem from="1741861582644" duration="6536000" />
+      <workItem from="1742399092174" duration="70363000" />
+      <workItem from="1742994620155" duration="11944000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />

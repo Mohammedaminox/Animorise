@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpeciesService, Species } from '../../../core/services/species.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,9 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-species-form',
   standalone: true,
   templateUrl: './species-form.component.html',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   styleUrls: ['./species-form.component.css']
 })
 export class SpeciesFormComponent implements OnInit {
@@ -26,7 +24,6 @@ export class SpeciesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.checkEditMode();
   }
 
   private initForm(): void {
@@ -34,14 +31,22 @@ export class SpeciesFormComponent implements OnInit {
       name: ['', Validators.required],
       icon: [null]
     });
+
+    this.checkEditMode(); // Ensure it runs after form initialization
   }
 
   private checkEditMode(): void {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.speciesId = +params['id'];
+
         this.speciesService.getSpeciesById(this.speciesId).subscribe(species => {
-          this.speciesForm.patchValue(species);
+          if (species) {
+            // console.log('Editing species:', species); // Debugging
+            this.speciesForm.patchValue({
+              name: species.name
+            });
+          }
         });
       }
     });
