@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,8 +45,6 @@ public class Animal {
     @Column(nullable = true)
     private HealthStatus healthStatus;
 
-    @Column(nullable = true)
-    private String photoUrl; // Store URL to animal's photo
 
     @Column(nullable = false)
     private LocalDate birthDate;
@@ -54,6 +53,13 @@ public class Animal {
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonIgnore
     private User owner;
+
+    @OneToMany(mappedBy = "animal")
+    private List<Activity> activities;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
+    private List<RendezVous> rendezVousList;
+
 
     @Column(nullable = true)
     private String medicalHistory; // Can store a JSON string or formatted history

@@ -33,11 +33,10 @@ export class AnimalService {
     return this.http.get<Animal>(`${this.API_URL}/${id}`);
   }
 
-  addAnimal(animal: Animal, ownerId: number): Observable<Animal> {
+  addAnimal(ownerId: number, animal: Animal): Observable<Animal> {
     return this.http.post<Animal>(`${this.API_URL}/${ownerId}`, animal);
   }
-
-  updateAnimal(id: number, animal: Animal): Observable<Animal> {
+  updateAnimal(id: number, animal: Animal, selectedFile: File | undefined): Observable<Animal> {
     return this.http.put<Animal>(`${this.API_URL}/${id}`, animal);
   }
 

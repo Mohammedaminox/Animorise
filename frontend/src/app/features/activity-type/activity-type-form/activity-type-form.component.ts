@@ -6,16 +6,17 @@ import {ActivityTypeService, ActivityType} from "../../../core/services/activity
 @Component({
   selector: 'app-activity-type-form',
   standalone: true,
-    imports: [
-        ReactiveFormsModule
-    ],
+  imports: [
+    ReactiveFormsModule
+  ],
   templateUrl: './activity-type-form.component.html',
   styleUrl: './activity-type-form.component.css'
 })
-export class ActivityTypeFormComponent implements OnInit{
+export class ActivityTypeFormComponent implements OnInit {
   activityTypeForm!: FormGroup;
   activityTypeId?: number;
   selectedFile?: File;
+  currentIconPath?: string;
 
   private activityTypeService = inject(ActivityTypeService);
   private fb = inject(FormBuilder);
@@ -40,8 +41,14 @@ export class ActivityTypeFormComponent implements OnInit{
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.activityTypeId = +params['id'];
+
         this.activityTypeService.getActivityTypeById(this.activityTypeId).subscribe(activityType => {
-          this.activityTypeForm.patchValue(activityType);
+          if (activityType) {
+            this.activityTypeForm.patchValue({
+              name: activityType.name
+            });
+            this.currentIconPath = activityType.iconPath;
+          }
         });
       }
     });
@@ -58,6 +65,10 @@ export class ActivityTypeFormComponent implements OnInit{
     if (this.activityTypeForm.invalid) return;
 
     const activityType: ActivityType = this.activityTypeForm.value;
+    if (!this.selectedFile && this.currentIconPath) {
+      activityType.iconPath = this.currentIconPath;
+    }
+
     const request = this.activityTypeId
       ? this.activityTypeService.updateActivityType(this.activityTypeId, activityType, this.selectedFile)
       : this.activityTypeService.addActivityType(activityType, this.selectedFile);

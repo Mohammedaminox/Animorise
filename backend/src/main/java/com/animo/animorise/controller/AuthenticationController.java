@@ -38,8 +38,12 @@ public class AuthenticationController {
         LoginResponse loginResponse = new LoginResponse()
                 .setToken(jwtToken)
                 .setExpiresIn(jwtService.getExpirationTime())
-                .setUser(Map.of("role", authenticatedUser.getRole().name()));
+                .setUser(Map.of(
+                        "id", String.valueOf(authenticatedUser.getId()), // Add user ID
+                        "role", authenticatedUser.getRole().name()
+                ));
 
         return ResponseEntity.ok(loginResponse);
     }
+
 }

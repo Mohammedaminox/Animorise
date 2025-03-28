@@ -25,18 +25,22 @@ export class ActivityTypeService {
     return this.http.get<ActivityType>(`${this.API_URL}/${id}`);
   }
 
-  addActivityType(species: ActivityType, file?: File): Observable<ActivityType> {
+  addActivityType(activityType: ActivityType, file?: File): Observable<ActivityType> {
     const formData = new FormData();
-    formData.append('name', species.name);
+    formData.append('name', activityType.name);
     if (file) formData.append('icon', file);
 
     return this.http.post<ActivityType>(this.API_URL, formData);
   }
 
-  updateActivityType(id: number, species: ActivityType, file?: File): Observable<ActivityType> {
+  updateActivityType(id: number, activityType: ActivityType, file?: File): Observable<ActivityType> {
     const formData = new FormData();
-    formData.append('name', species.name);
-    if (file) formData.append('icon', file);
+    formData.append('name', activityType.name);
+    if (file) {
+      formData.append('icon', file);
+    } else if (activityType.iconPath) {
+      formData.append('iconPath', activityType.iconPath);
+    }
 
     return this.http.put<ActivityType>(`${this.API_URL}/${id}`, formData);
   }

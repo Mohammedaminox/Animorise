@@ -1,3 +1,4 @@
+// auth.service.ts
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 interface AuthResponse {
   token: string;
   expiresIn: number; // Time in seconds
-  user: { role: string }; // Single role
+  user: { id: number; role: string }; // Include user ID
 }
 
 @Injectable({
@@ -16,7 +17,7 @@ interface AuthResponse {
 export class AuthService {
   private readonly API_URL = 'http://localhost:8088/auth';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  private userSubject = new BehaviorSubject<{ role: string } | null>(null); //  role
+  private userSubject = new BehaviorSubject<{ id: number; role: string } | null>(null); // Include user ID
 
   user$ = this.userSubject.asObservable(); // Expose user$ observable
 
@@ -40,7 +41,7 @@ export class AuthService {
     return false;
   }
 
-  private getUserFromSession(): { role: string } | null {
+  private getUserFromSession(): { id: number; role: string } | null {
     if (isPlatformBrowser(this.platformId)) {
       const user = sessionStorage.getItem('user');
       return user ? JSON.parse(user) : null;
@@ -96,5 +97,11 @@ export class AuthService {
       message = 'Cannot connect to the server. Please try again later.';
     }
     return throwError(() => new Error(message));
+  }
+
+// auth.service.ts
+  getCurrentUserId(): number | null {
+    const user = sessionStorage.getItem('user');
+    return user ? JSON.parse(user).id : null;
   }
 }

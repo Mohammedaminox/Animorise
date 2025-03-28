@@ -63,7 +63,6 @@ public class AnimalServiceImpl implements AnimalService {
             animal.setGender(updatedAnimalDto.getGender());
             animal.setVaccinated(updatedAnimalDto.isVaccinated());
             animal.setHealthStatus(updatedAnimalDto.getHealthStatus());
-            animal.setPhotoUrl(updatedAnimalDto.getPhotoUrl());
             animal.setBirthDate(updatedAnimalDto.getBirthDate());
 
             Animal updatedAnimal = animalRepository.save(animal);
@@ -82,7 +81,6 @@ public class AnimalServiceImpl implements AnimalService {
                 animal.getGender(),
                 animal.isVaccinated(),
                 animal.getHealthStatus(),
-                animal.getPhotoUrl(),
                 animal.getBirthDate(),
                 (animal.getOwner() != null) ? animal.getOwner().getId() : null
         );
@@ -97,7 +95,6 @@ public class AnimalServiceImpl implements AnimalService {
         animal.setGender(dto.getGender());
         animal.setVaccinated(dto.isVaccinated());
         animal.setHealthStatus(dto.getHealthStatus());
-        animal.setPhotoUrl(dto.getPhotoUrl());
         animal.setBirthDate(dto.getBirthDate());
         return animal;
     }

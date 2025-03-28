@@ -21,9 +21,8 @@ public class AnimalDto {
     private Gender gender;
     private boolean vaccinated;
     private HealthStatus healthStatus;
-    private String photoUrl;
     private LocalDate birthDate;
-    private Integer ownerId; // Include only the owner's ID, not the full object
+    private Integer ownerId;
 
 
 }
