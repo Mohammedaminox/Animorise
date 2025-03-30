@@ -4,6 +4,7 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import {AuthService} from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-animals-list',
@@ -22,13 +23,34 @@ export class AnimalsListComponent implements OnInit {
 
   private router = inject(Router);
   private animalService = inject(AnimalService);
+  private authService = inject(AuthService);
 
+  // ngOnInit(): void {
+  //   this.loadAnimals();
+  // }
   ngOnInit(): void {
-    this.loadAnimals();
+    const ownerId = this.authService.getCurrentUserId();
+    if (ownerId !== null) {
+      this.loadAnimalsByOwnerId(ownerId);
+    } else {
+      this.errorMessage = 'User ID is not available in session storage.';
+    }
   }
 
   loadAnimals(): void {
     this.animalService.getAllAnimals().pipe(
+      catchError(error => {
+        this.errorMessage = 'Failed to load animals';
+        return of([]);
+      })
+    ).subscribe((data) => {
+      this.animalsList = data;
+      this.errorMessage = null;
+    });
+  }
+
+  loadAnimalsByOwnerId(ownerId: number): void {
+    this.animalService.getAnimalsByOwnerId(ownerId).pipe(
       catchError(error => {
         this.errorMessage = 'Failed to load animals';
         return of([]);

@@ -99,9 +99,12 @@ export class AuthService {
     return throwError(() => new Error(message));
   }
 
-// auth.service.ts
   getCurrentUserId(): number | null {
     const user = sessionStorage.getItem('user');
     return user ? JSON.parse(user).id : null;
+  }
+  getCurrentUserRole(): string | null {
+    const user = sessionStorage.getItem('user');
+    return user ? JSON.parse(user).role : null;
   }
 }

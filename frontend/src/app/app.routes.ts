@@ -2,7 +2,10 @@ import { Routes } from '@angular/router';
 import { LandingComponent } from './features/landing-page/landing/landing.component';
 import { UnauthorizedComponent } from './features/unauthorized/unauthorized.component';
 import { authGuard } from './core/guards/auth.guard';
-import { veterinereGuard } from './core/guards/veterinere.guard'; // Import the guard
+import { veterinereGuard } from './core/guards/veterinere.guard';
+import {RendezVousComponent} from "./features/rendez-vous/rendezvous/rendezvous.component";
+import {RendezVousVeterinereComponent} from "./features/rendez-vous/rendezvous-veterinere/rendezvous-veterinere.component"; // Import the guard
+import { RendezvousFormComponent } from './features/rendez-vous/rendezvous-form/rendezvous-form.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -10,6 +13,7 @@ export const routes: Routes = [
     path: 'unauthorized',
     component: UnauthorizedComponent
   },
+
   {
     path: 'auth',
     children: [
@@ -42,6 +46,26 @@ export const routes: Routes = [
     loadComponent: () => import('./dashboard/home/home.component')
       .then(c => c.HomeComponent)
   },
+        {
+          path: 'rendezvous',
+          canActivate: [authGuard],
+          children: [
+            {
+              path: '',
+              loadComponent: () => import('./features/rendez-vous/rendezvous/rendezvous.component').then(c => c.RendezVousComponent)
+            },
+            {
+              path: 'veterinere',
+              loadComponent: () => import('./features/rendez-vous/rendezvous-veterinere/rendezvous-veterinere.component').then(c => c.RendezVousVeterinereComponent),
+              canActivate: [authGuard, veterinereGuard]
+            },
+            {
+              path: 'form',
+              loadComponent: () => import('./features/rendez-vous/rendezvous-form/rendezvous-form.component').then(c => c.RendezvousFormComponent)
+            }
+          ]
+        },
+
       {
         path: 'species',
         canActivate: [authGuard, veterinereGuard],
@@ -87,7 +111,8 @@ export const routes: Routes = [
 
         {
           path: 'animals',
-          canActivate: [authGuard],          children: [
+          canActivate: [authGuard],
+          children: [
             {
               path: '',
               loadComponent: () => import('./features/animals/animals-list/animals-list.component')

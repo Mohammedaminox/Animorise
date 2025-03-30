@@ -7,27 +7,33 @@
 
   <!-- Navigation -->
   <nav class="flex flex-col space-y-4 p-6 mt-4">
-    <a routerLink="/dashboard/home" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+    <a *ngIf="userRole === 'VETERINERE' || userRole === 'USER'" routerLink="/dashboard/home" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
       <span>🏠</span> <span>Dashboard</span>
     </a>
 
-    <a routerLink="/pets" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>🐶</span> <span>My Pets</span>
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/activity" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>🐶</span> <span>My Activities</span>
     </a>
 
-    <a routerLink="/dashboard/species" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/species" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
       <span>🦴</span> <span>My Species</span>
     </a>
 
-    <a routerLink="/dashboard/activityType" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/activityType" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
       <span>🦴</span> <span>My ActivityTypes</span>
     </a>
 
-    <a routerLink="/dashboard/animals" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/animals" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
       <span>📅</span> <span>Animals</span>
     </a>
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/rendezvous" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>📅</span> <span>Rendezvous</span>
+    </a>
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/rendezvous/veterinere" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+      <span>📅</span> <span>Rendezvous</span>
+    </a>
 
-    <a routerLink="/settings" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
+    <a *ngIf="userRole === 'USER' || userRole === 'VETERINERE' " routerLink="/settings" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
       <span>⚙️</span> <span>Settings</span>
     </a>
   </nav>
@@ -40,8 +46,6 @@
   </span>
     <span class="tracking-wide">Sign Out</span>
   </button>
-
-
 
   <!-- Footer -->
   <div class="absolute bottom-0 left-0 right-0 p-4 text-center text-sm font-medium text-gray-500">

@@ -9,4 +9,6 @@ import lombok.Setter;
 public class RendezVousRequest {
     private Long animalId;
     private LocalDateTime dateTime;
+    private Long userId;
+
 }

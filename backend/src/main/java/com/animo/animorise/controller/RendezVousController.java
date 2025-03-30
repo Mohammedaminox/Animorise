@@ -22,7 +22,8 @@ public class RendezVousController {
     public ResponseEntity<RendezVousDto> createRendezVous(@RequestBody RendezVousRequest request) {
         return ResponseEntity.ok(rendezVousService.createRendezVous(
                 request.getAnimalId(),
-                request.getDateTime()
+                request.getDateTime(),
+                request.getUserId()
         ));
     }
 
@@ -44,4 +45,15 @@ public class RendezVousController {
     public ResponseEntity<List<RendezVousDto>> getRendezVousByAnimal(@PathVariable Long animalId) {
         return ResponseEntity.ok(rendezVousService.getRendezVousByAnimal(animalId));
     }
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<RendezVousDto>> getRendezVousByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(rendezVousService.getRendezVousByUser(userId));
+    }
+    @PreAuthorize(" hasRole('VETERINERE')")
+    @GetMapping
+    public ResponseEntity<List<RendezVousDto>> getAllRendezVous() {
+        return ResponseEntity.ok(rendezVousService.getAllRendezVous());
+    }
+
 }

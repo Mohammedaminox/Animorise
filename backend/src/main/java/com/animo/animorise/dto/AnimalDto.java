@@ -22,7 +22,7 @@ public class AnimalDto {
     private boolean vaccinated;
     private HealthStatus healthStatus;
     private LocalDate birthDate;
-    private Integer ownerId;
+    private Long ownerId;
 
 
 }

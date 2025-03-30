@@ -1,0 +1,36 @@
+<div class="container mx-auto p-6 bg-white rounded-xl shadow-md max-w-md">
+  <h2 class="text-xl font-semibold text-gray-900 mb-4 text-center">
+    📅 Créer un Rendez-vous
+  </h2>
+
+  <form [formGroup]="rendezVousForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <!-- Animal ID Field -->
+    <input type="hidden" formControlName="userId">
+    <div>
+      <div>
+        <label for="animalName" class="block text-sm font-medium text-gray-700">choose Animal</label>
+        <select id="animalName" formControlName="animalId"
+                class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let animal of animalsList" [value]="animal.id">
+            {{ animal.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date & Time Field -->
+    <div>
+      <label for="dateTime" class="block text-sm font-medium text-gray-700">Date & Heure</label>
+      <input id="dateTime" type="datetime-local" formControlName="dateTime"
+             class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button type="submit"
+              class="px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all">
+         Confirmer
+      </button>
+    </div>
+  </form>
+</div>

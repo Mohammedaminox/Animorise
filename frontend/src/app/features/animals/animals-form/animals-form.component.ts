@@ -17,10 +17,9 @@ import { NgForOf, NgOptimizedImage } from "@angular/common";
 export class AnimalsFormComponent implements OnInit {
   animalForm!: FormGroup;
   animalId?: number;
-  selectedFile?: File;
   speciesList: Species[] = [];
-  genders = ['Male', 'Female'];
-  healthStatuses = ['Healthy', 'Sick', 'UnderTreatment'];
+  // genders = ['Male', 'Female'];
+  // healthStatuses = ['Healthy', 'Sick', 'UnderTreatment'];
   currentUserId?: number | null;
 
   private animalService = inject(AnimalService);
@@ -67,7 +66,7 @@ export class AnimalsFormComponent implements OnInit {
               vaccinated: animal.vaccinated,
               healthStatus: animal.healthStatus,
               birthDate: animal.birthDate,
-              speciesName: animal.speciesName,
+              speciesId: animal.speciesId,
               ownerId: animal.ownerId
             });
           }
@@ -91,12 +90,6 @@ export class AnimalsFormComponent implements OnInit {
     }
   }
 
-  // onFileChange(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     this.selectedFile = input.files[0];
-  //   }
-  // }
 
   onSubmit(): void {
     if (this.animalForm.invalid) return;
@@ -108,7 +101,7 @@ export class AnimalsFormComponent implements OnInit {
     }
 
     const request = this.animalId
-      ? this.animalService.updateAnimal(this.animalId, animal, this.selectedFile)
+      ? this.animalService.updateAnimal(this.animalId, animal)
       : this.animalService.addAnimal(this.currentUserId, animal);
 
     request.subscribe({

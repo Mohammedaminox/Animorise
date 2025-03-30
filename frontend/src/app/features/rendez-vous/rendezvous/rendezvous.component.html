@@ -1,0 +1,58 @@
+<div class="container mx-auto p-8">
+  <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">
+    📅 Mes Rendez-vous
+  </h2>
+
+  <div class="overflow-x-auto bg-white shadow-md rounded-2xl">
+    <table class="w-full border-collapse rounded-lg overflow-hidden">
+      <thead class="bg-indigo-500 text-white uppercase text-sm">
+      <tr>
+        <th class="px-4 py-3 text-left">Date & Heure</th>
+        <th class="px-4 py-3 text-left">Nom</th>
+        <th class="px-4 py-3 text-left">Race</th>
+        <th class="px-4 py-3 text-left">Genre</th>
+        <th class="px-4 py-3 text-left">Vacciné</th>
+        <th class="px-4 py-3 text-left">Santé</th>
+        <th class="px-4 py-3 text-left">Statut</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rendezVous of rendezVousList" class="border-b hover:bg-gray-100">
+        <td class="px-4 py-3">
+          <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+            {{ rendezVous.dateTime | date: 'EEEE, dd MMM yyyy - HH:mm' }}
+          </span>
+        </td>
+        <td class="px-4 py-3 font-semibold text-indigo-600 uppercase">
+          {{ rendezVous.animalName }}
+        </td>
+        <td class="px-4 py-3">{{ rendezVous.animalRace }}</td>
+        <td class="px-4 py-3">{{ rendezVous.animalGender }}</td>
+        <td class="px-4 py-3">
+          <span [ngClass]="{'text-green-500': rendezVous.animalVaccinated, 'text-red-500': !rendezVous.animalVaccinated}">
+            {{ rendezVous.animalVaccinated ? 'Oui' : 'Non' }}
+          </span>
+        </td>
+        <td class="px-4 py-3">{{ rendezVous.animalHealthStatus }}</td>
+        <td class="px-4 py-3">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold"
+                [ngClass]="{
+                  'bg-green-100 text-green-600': rendezVous.status === 'ACCEPTED',
+                  'bg-yellow-100 text-yellow-600': rendezVous.status === 'PENDING',
+                  'bg-red-100 text-red-600': rendezVous.status === 'CANCELED'
+                }">
+            {{ rendezVous.status }}
+          </span>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Floating Action Button -->
+<button (click)="openRendezvousForm()"
+        class="fixed bottom-6 right-6 bg-indigo-600 p-5 rounded-full shadow-lg text-white text-2xl transition-transform duration-300 hover:scale-110 hover:shadow-xl focus:outline-none">
+  ➕
+</button>

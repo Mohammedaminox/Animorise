@@ -28,7 +28,7 @@ public class AnimalServiceImpl implements AnimalService {
     private final SpeciesRepository speciesRepository;
 
     @Override
-    public List<AnimalDto> getAnimalsByOwner(Integer ownerId) {
+    public List<AnimalDto> getAnimalsByOwner(Long ownerId) {
         return animalRepository.findByOwnerId(ownerId)
                 .stream()
                 .map(this::convertToDto)
@@ -42,7 +42,7 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public AnimalDto addAnimal(AnimalDto animalDto, Integer ownerId) {
+    public AnimalDto addAnimal(AnimalDto animalDto, Long ownerId) {
         User owner = userRepository.findById(ownerId)
                 .orElseThrow(() -> new OwnerNotFoundException("Owner not found with ID: " + ownerId));
         Animal animal = convertToEntity(animalDto);

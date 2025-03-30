@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AnimalService {
-    List<AnimalDto> getAnimalsByOwner(Integer ownerId);
+    List<AnimalDto> getAnimalsByOwner(Long ownerId);
     Optional<AnimalDto> getAnimalById(Long id);
-    AnimalDto addAnimal(AnimalDto animalDto, Integer ownerId);
+    AnimalDto addAnimal(AnimalDto animalDto, Long ownerId);
     AnimalDto updateAnimal(Long id, AnimalDto updatedAnimalDto);
     void deleteAnimal(Long id);
 

@@ -21,7 +21,7 @@ public class AnimalController {
 
     @GetMapping("/owner/{ownerId}")
     @PreAuthorize("hasRole('USER') or hasRole('VETERINERE')")
-    public ResponseEntity<List<AnimalDto>> getAnimalsByOwner(@PathVariable Integer ownerId) {
+    public ResponseEntity<List<AnimalDto>> getAnimalsByOwner(@PathVariable Long ownerId) {
         return ResponseEntity.ok(animalService.getAnimalsByOwner(ownerId));
     }
 
@@ -34,7 +34,7 @@ public class AnimalController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/{ownerId}")
-    public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto, @PathVariable Integer ownerId) {
+    public ResponseEntity<AnimalDto> addAnimal(@RequestBody AnimalDto animalDto, @PathVariable Long ownerId) {
         return ResponseEntity.ok(animalService.addAnimal(animalDto, ownerId));
     }
 

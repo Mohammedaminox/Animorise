@@ -3,6 +3,7 @@ package com.animo.animorise.service.impl;
 import com.animo.animorise.dto.RendezVousDto;
 import com.animo.animorise.entity.Animal;
 import com.animo.animorise.entity.RendezVous;
+import com.animo.animorise.entity.User;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.repository.AnimalRepository;
 import com.animo.animorise.repository.RendezVousRepository;
@@ -10,6 +11,7 @@ import com.animo.animorise.repository.UserRepository;
 import com.animo.animorise.service.RendezVousService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,19 +25,22 @@ public class RendezVousServiceImpl implements RendezVousService {
     private final UserRepository userRepository;
 
     @Override
-    public RendezVousDto createRendezVous(Long animalId,  LocalDateTime dateTime) {
+    public RendezVousDto createRendezVous(Long animalId, LocalDateTime dateTime, Long userId) {
         Animal animal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + animalId));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
 
         // Check for date conflicts excluding canceled appointments
         List<RendezVous> conflicts = rendezVousRepository.findByDateTimeBetweenAndStatusNot(
-                 dateTime.minusMinutes(30), dateTime.plusMinutes(30), RendezVous.Status.CANCELED);
+                dateTime.minusMinutes(30), dateTime.plusMinutes(30), RendezVous.Status.CANCELED);
         if (!conflicts.isEmpty()) {
             throw new IllegalArgumentException("Date conflict with another appointment");
         }
 
         RendezVous rendezVous = RendezVous.builder()
                 .animal(animal)
+                .user(user)
                 .dateTime(dateTime)
                 .status(RendezVous.Status.PENDING)
                 .build();
@@ -44,6 +49,7 @@ public class RendezVousServiceImpl implements RendezVousService {
     }
 
     @Override
+    @Transactional
     public RendezVousDto acceptRendezVous(Long rendezVousId) {
         RendezVous rendezVous = rendezVousRepository.findById(rendezVousId)
                 .orElseThrow(() -> new RuntimeException("Rendez-vous not found with ID: " + rendezVousId));
@@ -53,6 +59,7 @@ public class RendezVousServiceImpl implements RendezVousService {
     }
 
     @Override
+    @Transactional
     public RendezVousDto cancelRendezVous(Long rendezVousId) {
         RendezVous rendezVous = rendezVousRepository.findById(rendezVousId)
                 .orElseThrow(() -> new RuntimeException("Rendez-vous not found with ID: " + rendezVousId));
@@ -68,8 +75,34 @@ public class RendezVousServiceImpl implements RendezVousService {
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+    @Override
+    @Transactional
+    public List<RendezVousDto> getRendezVousByUser(Long userId) {
+        return rendezVousRepository.findByUserId(userId).stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<RendezVousDto> getAllRendezVous() {
+        return rendezVousRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
 
     private RendezVousDto convertToDto(RendezVous rendezVous) {
-        return new RendezVousDto(rendezVous.getId(), rendezVous.getAnimal().getId(), rendezVous.getDateTime(), rendezVous.getStatus());
+        return new RendezVousDto(
+                rendezVous.getId(),
+                rendezVous.getAnimal().getId(),
+                rendezVous.getAnimal().getName(),
+                rendezVous.getAnimal().getRace(),
+                rendezVous.getAnimal().getGender(),
+                rendezVous.getAnimal().isVaccinated(),
+                rendezVous.getAnimal().getHealthStatus(),
+                rendezVous.getDateTime(),
+                rendezVous.getStatus(),
+                rendezVous.getUser().getId()
+        );
     }
 }
