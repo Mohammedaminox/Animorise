@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/guards/owner.guard.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/guards/veterinere.guard.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/interceptors/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/core/interceptors/auth.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/core/services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/core/services/species.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/core/services/species.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/dashboard/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dashboard/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/dashboard/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/dashboard/sidebar/sidebar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/animals/animals-list/animals-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/animals/animals-list/animals-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/rendez-vous/rendezvous-form/rendezvous-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/rendez-vous/rendezvous-form/rendezvous-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/features/rendez-vous/rendezvous-veterinere/rendezvous-veterinere.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/features/rendez-vous/rendezvous-veterinere/rendezvous-veterinere.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/Générateur d'Art AI Gratuit _ Créez de l'Art AI à partir de Texte - SeaArt AI.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/Screenshot 2025-01-07 152254.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/Screenshot 2025-01-22 145025.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/Screenshot 2025-03-19 104327.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/Screenshot 2025-03-19 104538.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/images/sof.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/upload-dir/Screenshot 2025-01-22 145025.png" beforeDir="false" />
-    </list>
+    <list default="true" id="18724746-ae8c-4d85-9953-2c9e1443e776" name="Changes" comment="jwtAuth/Create custom exceptions for better error handling &amp;&amp; Global Exception Handler &amp;&amp; Add Logging to AuthenticationService" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -256,7 +233,7 @@
       <workItem from="1742399092174" duration="70363000" />
       <workItem from="1742994620155" duration="12880000" />
       <workItem from="1743090988428" duration="854000" />
-      <workItem from="1743093593672" duration="91537000" />
+      <workItem from="1743093593672" duration="92249000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
