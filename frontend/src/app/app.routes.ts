@@ -6,6 +6,7 @@ import { veterinereGuard } from './core/guards/veterinere.guard';
 import {RendezVousComponent} from "./features/rendez-vous/rendezvous/rendezvous.component";
 import {RendezVousVeterinereComponent} from "./features/rendez-vous/rendezvous-veterinere/rendezvous-veterinere.component"; // Import the guard
 import { RendezvousFormComponent } from './features/rendez-vous/rendezvous-form/rendezvous-form.component';
+import {AnimalsVeterinereComponent} from "./features/animals/animals-veterinere/animals-veterinere.component";
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -65,6 +66,20 @@ export const routes: Routes = [
             }
           ]
         },
+        {
+          path: 'activities',
+          canActivate: [authGuard],
+          children: [
+            {
+              path: '',
+              loadComponent: () => import('./features/activities/activities-list/activities-list.component').then(c => c.ActivitiesListComponent)
+            },
+            {
+              path: 'form',
+              loadComponent: () => import('./features/activities/activities-form/activities-form.component').then(c => c.ActivitiesFormComponent)
+            }
+          ]
+        },
 
       {
         path: 'species',
@@ -117,6 +132,11 @@ export const routes: Routes = [
               path: '',
               loadComponent: () => import('./features/animals/animals-list/animals-list.component')
                 .then(c => c.AnimalsListComponent)
+            },
+            {
+              path: 'veterinere',
+              loadComponent: () => import('./features/animals/animals-veterinere/animals-veterinere.component').then(c => c.AnimalsVeterinereComponent),
+              canActivate: [authGuard, veterinereGuard]
             },
             {
               path: 'form',

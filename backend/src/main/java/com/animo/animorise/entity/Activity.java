@@ -1,12 +1,18 @@
 package com.animo.animorise.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +27,8 @@ public class Activity {
     private ActivityType type;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     private String description;
     private boolean isRepeat;
@@ -31,13 +37,7 @@ public class Activity {
     @Enumerated(EnumType.STRING)
     private RepeatUnit repeatUnit;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
     private boolean notified;
 
-    public enum Status {
-        PENDING,
-        COMPLETED,
-        CANCELED
-    }
+
 }

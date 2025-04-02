@@ -51,12 +51,6 @@ public class AnimalController {
         return ResponseEntity.noContent().build();
     }
 
-    @PreAuthorize("hasRole('USER')")
-    @PostMapping("/activities")
-    public ResponseEntity<ActivityDto> addActivity(@RequestBody ActivityDto activityDto) {
-        return ResponseEntity.ok(animalService.addActivity(activityDto));
-    }
-
     @PreAuthorize("hasRole('VETERINERE')")
     @GetMapping
     public ResponseEntity<List<AnimalDto>> getAllAnimals() {

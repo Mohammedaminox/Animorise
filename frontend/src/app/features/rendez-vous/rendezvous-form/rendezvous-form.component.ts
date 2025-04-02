@@ -63,7 +63,6 @@ export class RendezvousFormComponent implements OnInit {
     if (this.rendezVousForm.invalid) return;
 
     const rendezVous: RendezVous = this.rendezVousForm.value;
-    // console.log('rendezVous', rendezVous);
     this.rendezVousService.createRendezVous(rendezVous).subscribe({
       next: () => this.router.navigate(['/dashboard/rendezvous']),
       error: (err) => console.error('Error occurred:', err)

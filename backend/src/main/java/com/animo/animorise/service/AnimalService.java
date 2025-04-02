@@ -19,6 +19,6 @@ public interface AnimalService {
     AnimalDto updateHealthStatus(Long id, HealthStatus healthStatus);
     AnimalDto updateVaccinationStatus(Long id, boolean vaccinated);
 
-    ActivityDto addActivity(ActivityDto activityDto);
+//    ActivityDto addActivity(ActivityDto activityDto);
 
 }

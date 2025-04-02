@@ -8,5 +8,5 @@ public class ActivityTypeDto {
     private Long id;
     private String name;
     private MultipartFile icon;
-    private String iconPath; // New field for icon file path
+    private String iconPath;
 }

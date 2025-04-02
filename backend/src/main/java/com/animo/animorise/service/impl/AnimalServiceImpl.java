@@ -1,10 +1,8 @@
 package com.animo.animorise.service.impl;
 
-import com.animo.animorise.dto.ActivityDto;
+
 import com.animo.animorise.dto.AnimalDto;
-import com.animo.animorise.dto.SpeciesDto;
 import com.animo.animorise.entity.*;
-import com.animo.animorise.exception.activity.ActivityTypeNotFoundException;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
 import com.animo.animorise.exception.species.SpeciesNotFoundException;
 import com.animo.animorise.exception.user.OwnerNotFoundException;
@@ -37,10 +35,10 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public Optional<AnimalDto> getAnimalById(Long id) {
-        return animalRepository.findById(id)
-                .map(this::convertToDto);
+        return Optional.ofNullable(animalRepository.findById(id)
+                .map(this::convertToDto)
+                .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id)));
     }
-
     @Override
     public AnimalDto addAnimal(AnimalDto animalDto, Long ownerId) {
         User owner = userRepository.findById(ownerId)
@@ -133,38 +131,4 @@ public class AnimalServiceImpl implements AnimalService {
         }).orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + id));
     }
 
-    @Transactional
-    @Override
-    public ActivityDto addActivity(ActivityDto activityDto) {
-        Animal animal = animalRepository.findById(activityDto.getAnimalId())
-                .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + activityDto.getAnimalId()));
-
-        ActivityType activityType = activityTypeRepository.findById(activityDto.getActivityTypeId())
-                .orElseThrow(() -> new ActivityTypeNotFoundException("ActivityType not found with id: " +  activityDto.getActivityTypeId()));
-        Activity activity = new Activity();
-        activity.setAnimal(animal);
-        activity.setType(activityType);
-        activity.setDescription(activityDto.getDescription());
-        activity.setRepeat(activityDto.isRepeat());
-        activity.setScheduleStart(activityDto.getScheduleStart());
-        activity.setRepeatEvery(activityDto.getRepeatEvery());
-        activity.setRepeatUnit(activityDto.getRepeatUnit());
-        activity.setStatus(Activity.Status.PENDING);
-        activity.setUser(animal.getOwner());
-
-        Activity savedActivity = activityRepository.save(activity);
-        return convertToDto(savedActivity);
-    }
-
-    private ActivityDto convertToDto(Activity activity) {
-        ActivityDto dto = new ActivityDto();
-        dto.setAnimalId((activity.getAnimal() != null) ? activity.getAnimal().getId() : null);
-        dto.setActivityTypeId((activity.getType() != null) ? activity.getType().getId() : null);
-        dto.setDescription(activity.getDescription());
-        dto.setRepeat(activity.isRepeat());
-        dto.setScheduleStart(activity.getScheduleStart());
-        dto.setRepeatEvery(activity.getRepeatEvery());
-        dto.setRepeatUnit(activity.getRepeatUnit());
-        return dto;
-    }
 }

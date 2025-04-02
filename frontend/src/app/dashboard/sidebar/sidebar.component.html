@@ -1,5 +1,4 @@
 <aside class="w-72 bg-white/90 backdrop-blur-lg shadow-xl rounded-r-3xl text-gray-900 flex flex-col transform transition-all duration-300 ease-in-out">
-  <!-- Sidebar Header -->
   <div class="p-6 text-center text-3xl font-semibold tracking-tight flex items-center justify-center space-x-2">
     <span class="text-4xl">🐾</span>
     <span class="text-indigo-600">PetCare</span>
@@ -7,43 +6,46 @@
 
   <!-- Navigation -->
   <nav class="flex flex-col space-y-4 p-6 mt-4">
-    <a *ngIf="userRole === 'VETERINERE' || userRole === 'USER'" routerLink="/dashboard/home" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>🏠</span> <span>Dashboard</span>
+    <a *ngIf="userRole === 'VETERINERE' || userRole === 'USER'" routerLink="/dashboard/home" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">🏡</span> <span>Dashboard</span>
     </a>
 
-    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/activity" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>🐶</span> <span>My Activities</span>
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/activities" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">📝</span> <span>My Activities</span>
     </a>
 
-    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/species" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>🦴</span> <span>My Species</span>
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/species" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">🦴</span> <span>My Species</span>
     </a>
 
-    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/activityType" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>🦴</span> <span>My ActivityTypes</span>
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/activityType" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">🏋️‍♂️</span> <span>My ActivityTypes</span>
     </a>
 
-    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/animals" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>📅</span> <span>Animals</span>
-    </a>
-    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/rendezvous" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>📅</span> <span>Rendezvous</span>
-    </a>
-    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/rendezvous/veterinere" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>📅</span> <span>Rendezvous</span>
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/animals" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">🐾</span> <span>Animals</span>
     </a>
 
-    <a *ngIf="userRole === 'USER' || userRole === 'VETERINERE' " routerLink="/settings" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-500 hover:text-white hover:shadow-lg">
-      <span>⚙️</span> <span>Settings</span>
+    <a *ngIf="userRole === 'USER'" routerLink="/dashboard/rendezvous" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">📅</span> <span>Rendezvous</span>
+    </a>
+
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/rendezvous/veterinere" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">📅</span> <span>Rendezvous</span>
+    </a>
+
+    <a *ngIf="userRole === 'VETERINERE'" routerLink="/dashboard/animals/veterinere" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">🐕</span> <span>All Animals</span>
+    </a>
+
+    <a *ngIf="userRole === 'USER' || userRole === 'VETERINERE'" routerLink="/settings" class="flex items-center space-x-3 p-3 rounded-lg text-lg font-medium transition-all duration-300 ease-in-out hover:bg-indigo-600 hover:text-white hover:shadow-lg">
+      <span class="text-2xl">⚙️</span> <span>Settings</span>
     </a>
   </nav>
 
   <!-- Logout Button -->
-  <button (click)="logout()"
-          class="absolute bottom-16 left-0 right-0 mx-6 p-4 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl text-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-95 hover:shadow-2xl hover:from-indigo-600 hover:to-pink-600 active:scale-90 flex items-center justify-center gap-3 shadow-lg shadow-indigo-900/30">
-  <span class="text-2xl opacity-90 transition-all duration-300 ease-in-out group-hover:rotate-[-8deg]">
-    🔑
-  </span>
+  <button (click)="logout()" class="absolute bottom-16 left-0 right-0 mx-6 p-4 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl text-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-95 hover:shadow-2xl hover:from-indigo-600 hover:to-pink-600 active:scale-90 flex items-center justify-center gap-3 shadow-lg shadow-indigo-900/30">
+    <span class="text-2xl opacity-90 transition-all duration-300 ease-in-out group-hover:rotate-[-8deg]">🔑</span>
     <span class="tracking-wide">Sign Out</span>
   </button>
 

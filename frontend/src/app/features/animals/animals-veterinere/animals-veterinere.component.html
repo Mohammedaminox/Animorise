@@ -1,0 +1,95 @@
+<!-- Modals -->
+<div *ngIf="showHealthStatusModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">Update Health Status</h2>
+    <select [(ngModel)]="newHealthStatus" class="border p-2 w-full mb-4">
+      <option value="Healthy">Healthy</option>
+      <option value="Sick">Sick</option>
+      <option value="UnderTreatment">Under Treatment</option>
+    </select>
+    <div class="flex justify-end">
+      <button (click)="updateHeathStatus()" class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2">Update</button>
+      <button (click)="closeHealthStatusModal()" class="bg-gray-500 text-white px-4 py-2 rounded-lg">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showVaccinationStatusModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-xl font-semibold mb-4">Update Vaccination Status</h2>
+    <p class="mb-4">Is the animal vaccinated?</p>
+    <div class="flex justify-end">
+      <button (click)="confirmVaccinationStatus(true)" class="bg-green-500 text-white px-4 py-2 rounded-lg mr-2">Yes</button>
+      <button (click)="confirmVaccinationStatus(false)" class="bg-red-500 text-white px-4 py-2 rounded-lg">No</button>
+    </div>
+  </div>
+</div>
+<div class="container mx-auto p-6">
+  <h2 class="text-4xl font-extrabold text-gray-900 mb-6 text-center">
+    🐾 Meet Our Animals
+  </h2>
+
+  <div class="overflow-x-auto bg-white shadow-md rounded-2xl">
+    <table class="w-full border-collapse rounded-lg overflow-hidden">
+      <thead class="bg-indigo-500 text-white uppercase text-sm">
+      <tr>
+        <th class="px-4 py-3 text-left">Avatar</th>
+        <th class="px-4 py-3 text-left">Name</th>
+        <th class="px-4 py-3 text-left">Species</th>
+        <th class="px-4 py-3 text-left">Race</th>
+        <th class="px-4 py-3 text-left">Gender</th>
+        <th class="px-4 py-3 text-left">Vaccinated</th>
+        <th class="px-4 py-3 text-left">Health</th>
+        <th class="px-4 py-3 text-left">Birth Date</th>
+        <th class="px-4 py-3 text-center">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let animal of animalsList" class="border-b hover:bg-gray-100 transition">
+        <!-- Avatar -->
+        <td class="px-4 py-3">
+          <div class="w-12 h-12 rounded-full border-2 border-indigo-400 overflow-hidden shadow-md">
+            <img *ngIf="animal.speciesIcon"
+                 [src]="'http://localhost:8088/images/' + animal.speciesIcon"
+                 alt="Species Icon"
+                 class="w-full h-full object-cover">
+          </div>
+        </td>
+        <!-- Name -->
+        <td class="px-4 py-3 font-semibold text-gray-900">
+          {{ animal.name }}
+        </td>
+        <!-- Species -->
+        <td class="px-4 py-3">{{ animal.speciesName }}</td>
+        <!-- Race -->
+        <td class="px-4 py-3">{{ animal.race }}</td>
+        <!-- Gender -->
+        <td class="px-4 py-3">{{ animal.gender }}</td>
+        <!-- Vaccination Status -->
+        <td class="px-4 py-3">
+          <span class="px-3 py-1 text-xs font-semibold rounded-full"
+                [ngClass]="{'bg-green-100 text-green-600': animal.vaccinated,
+                            'bg-red-100 text-red-600': !animal.vaccinated}">
+            {{ animal.vaccinated ? 'Yes' : 'No' }}
+          </span>
+        </td>
+        <!-- Health Status -->
+        <td class="px-4 py-3">{{ animal.healthStatus }}</td>
+        <!-- Birth Date -->
+        <td class="px-4 py-3">{{ animal.birthDate }}</td>
+        <!-- Actions -->
+        <td class="px-4 py-3 flex justify-center space-x-2">
+          <button (click)="openHealthStatusModal(animal)"
+                  class="px-3 py-1 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition">
+            🏥
+          </button>
+          <button (click)="openVaccinationStatusModal(animal)"
+                  class="px-3 py-1 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition">
+            💉
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

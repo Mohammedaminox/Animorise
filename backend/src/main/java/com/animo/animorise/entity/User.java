@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder // Ensure this annotation is present
+@Builder
 @Table(name = "users")
 @Entity
 public class User implements UserDetails {
@@ -52,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.password; // Explicitly override the method
+        return this.password;
     }
 
     @Override

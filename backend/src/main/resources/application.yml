@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/animorise
+    url: jdbc:postgresql://db:5432/animorise
     username: postgres
     password: AMINOX1999
   jpa:
@@ -10,7 +10,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    open-in-view: false # Disable open-in-view to avoid performance issues
+    open-in-view: false
   docker:
     compose:
       enabled: false

@@ -5,6 +5,8 @@ import com.animo.animorise.entity.Animal;
 import com.animo.animorise.entity.RendezVous;
 import com.animo.animorise.entity.User;
 import com.animo.animorise.exception.animal.AnimalNotFoundException;
+import com.animo.animorise.exception.animal.UserNotFoundException;
+import com.animo.animorise.exception.rendezvous.RendezVousNotFoundException;
 import com.animo.animorise.repository.AnimalRepository;
 import com.animo.animorise.repository.RendezVousRepository;
 import com.animo.animorise.repository.UserRepository;
@@ -29,9 +31,9 @@ public class RendezVousServiceImpl implements RendezVousService {
         Animal animal = animalRepository.findById(animalId)
                 .orElseThrow(() -> new AnimalNotFoundException("Animal not found with ID: " + animalId));
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with ID: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
 
-        // Check for date conflicts excluding canceled appointments
+        // Check for date conflicts
         List<RendezVous> conflicts = rendezVousRepository.findByDateTimeBetweenAndStatusNot(
                 dateTime.minusMinutes(30), dateTime.plusMinutes(30), RendezVous.Status.CANCELED);
         if (!conflicts.isEmpty()) {
@@ -52,7 +54,7 @@ public class RendezVousServiceImpl implements RendezVousService {
     @Transactional
     public RendezVousDto acceptRendezVous(Long rendezVousId) {
         RendezVous rendezVous = rendezVousRepository.findById(rendezVousId)
-                .orElseThrow(() -> new RuntimeException("Rendez-vous not found with ID: " + rendezVousId));
+                .orElseThrow(() -> new RendezVousNotFoundException("Rendez-vous not found with ID: " + rendezVousId));
         rendezVous.setStatus(RendezVous.Status.ACCEPTED);
         rendezVousRepository.save(rendezVous);
         return convertToDto(rendezVous);
@@ -62,7 +64,7 @@ public class RendezVousServiceImpl implements RendezVousService {
     @Transactional
     public RendezVousDto cancelRendezVous(Long rendezVousId) {
         RendezVous rendezVous = rendezVousRepository.findById(rendezVousId)
-                .orElseThrow(() -> new RuntimeException("Rendez-vous not found with ID: " + rendezVousId));
+                .orElseThrow(() -> new RendezVousNotFoundException("Rendez-vous not found with ID: " + rendezVousId));
         rendezVous.setStatus(RendezVous.Status.CANCELED);
         rendezVousRepository.save(rendezVous);
         return convertToDto(rendezVous);

@@ -36,7 +36,7 @@ public class Animal {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Gender gender; // Example: Male, Female, Unknown
+    private Gender gender;
 
     @Column(nullable = true)
     private boolean vaccinated;
@@ -60,9 +60,6 @@ public class Animal {
     @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
     private List<RendezVous> rendezVousList;
 
-
-    @Column(nullable = true)
-    private String medicalHistory; // Can store a JSON string or formatted history
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")

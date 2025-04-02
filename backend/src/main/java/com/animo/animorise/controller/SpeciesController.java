@@ -23,7 +23,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SpeciesController {
     private final SpeciesService speciesService;
-//    private static final String UPLOAD_DIR = "backend/src/main/resources/static/images/";
     private static final String UPLOAD_DIR = "backend/uploads/";
 
     @PreAuthorize("hasRole('VETERINERE')")
@@ -86,28 +85,4 @@ public class SpeciesController {
         }
     }
 
-
-//    private void handleFileUpload(SpeciesDto speciesDto) {
-//        MultipartFile file = speciesDto.getIcon();
-//        if (file != null && !file.isEmpty()) {
-//            try {
-//                // Create the directory if it doesn't exist
-//                File uploadDir = new File(UPLOAD_DIR);
-//                if (!uploadDir.exists()) {
-//                    uploadDir.mkdirs();
-//                }
-//
-//                // Save the file locally
-//                Path filePath = Paths.get(UPLOAD_DIR, file.getOriginalFilename());
-//                Files.write(filePath, file.getBytes());
-//
-//                // Normalize the path to use forward slashes and set the icon path in the DTO
-//                String normalizedPath = filePath.toString().replace("\\", "/");
-//                speciesDto.setIconPath(normalizedPath);
-//
-//            } catch (IOException e) {
-//                throw new RuntimeException("Failed to upload file: " + e.getMessage());
-//            }
-//        }
-//    }
 }

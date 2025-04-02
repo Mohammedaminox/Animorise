@@ -13,7 +13,7 @@ export interface Species {
   providedIn: 'root'
 })
 export class SpeciesService {
-  private API_URL = 'http://localhost:8088/api/species'; // Adjust API URL
+  private API_URL = 'http://localhost:8088/api/species';
 
   private http = inject(HttpClient);
 

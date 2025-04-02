@@ -84,26 +84,4 @@ public class ActivityTypeController {
         }
     }
 
-//    private void handleFileUpload(ActivityTypeDto activityTypeDto) {
-//        MultipartFile file = activityTypeDto.getIcon();
-//        if (file != null && !file.isEmpty()) {
-//            try {
-//                // Create the directory if it doesn't exist
-//                File uploadDir = new File(UPLOAD_DIR);
-//                if (!uploadDir.exists()) {
-//                    uploadDir.mkdirs();
-//                }
-//
-//                // Save the file locally
-//                Path filePath = Paths.get(UPLOAD_DIR, file.getOriginalFilename());
-//                Files.write(filePath, file.getBytes());
-//
-//                // Set the icon path in the DTO
-//                activityTypeDto.setIconPath(filePath.toString());
-//            } catch (IOException e) {
-//                throw new RuntimeException("Failed to upload file: " + e.getMessage());
-//            }
-//        }
-//    }
-
 }

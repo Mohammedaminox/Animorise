@@ -33,6 +33,7 @@ export class RendezVousVeterinereComponent implements OnInit {
   acceptRendezVous(rendezVousId: number): void {
     this.rendezVousService.acceptRendezVous(rendezVousId).subscribe(() => {
       this.rendezVousList = this.rendezVousList.filter(r => r.id !== rendezVousId);
+      this.loadAllRendezVous();
     });
   }
 
@@ -40,6 +41,7 @@ export class RendezVousVeterinereComponent implements OnInit {
   cancelRendezVous(rendezVousId: number): void {
     this.rendezVousService.cancelRendezVous(rendezVousId).subscribe(() => {
       this.rendezVousList = this.rendezVousList.filter(r => r.id !== rendezVousId);
+      this.loadAllRendezVous();
     });
   }
 }

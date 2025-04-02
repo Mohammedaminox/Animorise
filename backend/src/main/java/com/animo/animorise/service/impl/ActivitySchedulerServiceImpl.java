@@ -1,4 +1,3 @@
-// src/main/java/com/animo/animorise/service/impl/ActivitySchedulerServiceImpl.java
 package com.animo.animorise.service.impl;
 
 import com.animo.animorise.dto.ActivityDto;
@@ -29,6 +28,31 @@ public class ActivitySchedulerServiceImpl implements ActivitySchedulerService {
             notificationServiceImpl.notifyUser(convertToDto(activity));
             activity.setNotified(true);
             activityRepository.save(activity);
+
+            // Réinitialiser le champ notified pour les activités récurrentes
+            if (activity.isRepeat()) {
+                LocalDateTime nextSchedule = calculateNextSchedule(activity);
+                activity.setScheduleStart(nextSchedule);
+                activity.setNotified(false);
+                activityRepository.save(activity);
+            }
+        }
+    }
+
+    private LocalDateTime calculateNextSchedule(Activity activity) {
+        switch (activity.getRepeatUnit()) {
+            case HOUR:
+                return activity.getScheduleStart().plusHours(activity.getRepeatEvery());
+            case DAY:
+                return activity.getScheduleStart().plusDays(activity.getRepeatEvery());
+            case WEEK:
+                return activity.getScheduleStart().plusWeeks(activity.getRepeatEvery());
+            case MONTH:
+                return activity.getScheduleStart().plusMonths(activity.getRepeatEvery());
+            case YEAR:
+                return activity.getScheduleStart().plusYears(activity.getRepeatEvery());
+            default:
+                throw new IllegalArgumentException("Unité de répétition non supportée: " + activity.getRepeatUnit());
         }
     }
 
@@ -42,8 +66,7 @@ public class ActivitySchedulerServiceImpl implements ActivitySchedulerService {
         dto.setScheduleStart(activity.getScheduleStart());
         dto.setRepeatEvery(activity.getRepeatEvery());
         dto.setRepeatUnit(activity.getRepeatUnit());
-        dto.setStatus(activity.getStatus());
-        dto.setUserEmail(activity.getUser().getEmail());
+        dto.setUserEmail(activity.getOwner().getEmail());
         return dto;
     }
 }

@@ -25,9 +25,6 @@ export class AnimalsListComponent implements OnInit {
   private animalService = inject(AnimalService);
   private authService = inject(AuthService);
 
-  // ngOnInit(): void {
-  //   this.loadAnimals();
-  // }
   ngOnInit(): void {
     const ownerId = this.authService.getCurrentUserId();
     if (ownerId !== null) {
@@ -35,18 +32,6 @@ export class AnimalsListComponent implements OnInit {
     } else {
       this.errorMessage = 'User ID is not available in session storage.';
     }
-  }
-
-  loadAnimals(): void {
-    this.animalService.getAllAnimals().pipe(
-      catchError(error => {
-        this.errorMessage = 'Failed to load animals';
-        return of([]);
-      })
-    ).subscribe((data) => {
-      this.animalsList = data;
-      this.errorMessage = null;
-    });
   }
 
   loadAnimalsByOwnerId(ownerId: number): void {

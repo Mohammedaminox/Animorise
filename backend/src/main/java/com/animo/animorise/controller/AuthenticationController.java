@@ -32,14 +32,14 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
-        // 🔹 Generate JWT using the interface, ensuring flexibility
+        //  Generate JWT using the interface, ensuring flexibility
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         LoginResponse loginResponse = new LoginResponse()
                 .setToken(jwtToken)
                 .setExpiresIn(jwtService.getExpirationTime())
                 .setUser(Map.of(
-                        "id", String.valueOf(authenticatedUser.getId()), // Add user ID
+                        "id", String.valueOf(authenticatedUser.getId()),
                         "role", authenticatedUser.getRole().name()
                 ));
 

@@ -11,6 +11,5 @@ public interface SpeciesService {
     SpeciesDto updateSpecies(Long id, SpeciesDto speciesDto);
     void deleteSpecies(Long id);
     Optional<SpeciesDto> getSpeciesById(Long id);
-
     List<SpeciesDto> getAllSpecies();
 }

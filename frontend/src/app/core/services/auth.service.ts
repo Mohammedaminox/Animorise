@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 
 interface AuthResponse {
   token: string;
-  expiresIn: number; // Time in seconds
-  user: { id: number; role: string }; // Include user ID
+  expiresIn: number;
+  user: { id: number; role: string };
 }
 
 @Injectable({
@@ -17,7 +17,7 @@ interface AuthResponse {
 export class AuthService {
   private readonly API_URL = 'http://localhost:8088/auth';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  private userSubject = new BehaviorSubject<{ id: number; role: string } | null>(null); // Include user ID
+  private userSubject = new BehaviorSubject<{ id: number; role: string } | null>(null);
 
   user$ = this.userSubject.asObservable(); // Expose user$ observable
 
@@ -28,7 +28,7 @@ export class AuthService {
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.isAuthenticatedSubject.next(this.hasValidSession());
-      this.userSubject.next(this.getUserFromSession()); // Initialize user subject
+      this.userSubject.next(this.getUserFromSession());
     }
   }
 
@@ -83,7 +83,7 @@ export class AuthService {
       const expirationTime = new Date().getTime() + response.expiresIn * 1000;
       sessionStorage.setItem('token', response.token);
       sessionStorage.setItem('expiresAt', expirationTime.toString());
-      sessionStorage.setItem('user', JSON.stringify(response.user)); // Store user information
+      sessionStorage.setItem('user', JSON.stringify(response.user));
     }
     this.isAuthenticatedSubject.next(true);
     this.userSubject.next(response.user); // Update user subject

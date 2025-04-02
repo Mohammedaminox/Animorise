@@ -13,9 +13,4 @@ public class SpeciesDto {
     private MultipartFile icon;
     private String iconPath;
 
-    public SpeciesDto(Long id, String name, String iconPath) {
-        this.id = id;
-        this.name = name;
-        this.iconPath = iconPath;
-    }
 }

@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "8088:8088"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/animorise
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=AMINOX1999
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    networks:
+      - animorise-network
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: AMINOX1999
+      POSTGRES_DB: animorise
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - animorise-network
+
+networks:
+  animorise-network:
+
+volumes:
+  postgres_data:

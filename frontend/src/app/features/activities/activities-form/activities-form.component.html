@@ -1,0 +1,79 @@
+<div class="container mx-auto p-6 bg-white rounded-xl shadow-md max-w-2xl">
+  <h2 class="text-xl font-semibold text-gray-900 mb-4 text-center">
+    Ajouter Activité
+  </h2>
+
+  <form [formGroup]="activitiesForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <!-- Description & Type -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <input id="description" type="text" formControlName="description"
+               class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="activityTypeId" class="block text-sm font-medium text-gray-700">Type</label>
+        <select id="activityTypeId" formControlName="activityTypeId"
+                class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let type of activityTypesList" [value]="type.id">
+            {{ type.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Animal & Schedule Start -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="animalId" class="block text-sm font-medium text-gray-700">Animal</label>
+        <select id="animalId" formControlName="animalId"
+                class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let animal of animalsList" [value]="animal.id">
+            {{ animal.name }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="scheduleStart" class="block text-sm font-medium text-gray-700">Début</label>
+        <input id="scheduleStart" type="datetime-local" formControlName="scheduleStart"
+               class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+    </div>
+
+    <!-- Repeat & Repeat Every -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="flex items-center space-x-3">
+        <input id="repeat" type="checkbox" formControlName="repeat"
+               class="h-5 w-5 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+        <label for="repeat" class="text-sm font-medium text-gray-700">Répéter</label>
+      </div>
+      <div>
+        <label for="repeatEvery" class="block text-sm font-medium text-gray-700">Répéter chaque</label>
+        <input id="repeatEvery" type="number" formControlName="repeatEvery"
+               class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+    </div>
+
+    <!-- Repeat Unit -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="repeatUnit" class="block text-sm font-medium text-gray-700">Unité de répétition</label>
+        <select id="repeatUnit" formControlName="repeatUnit"
+                class="w-full mt-1 px-4 py-2 border rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="HOUR">Hour</option>
+          <option value="DAY">Jour</option>
+          <option value="WEEK">Semaine</option>
+          <option value="MONTH">Mois</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end">
+      <button type="submit"
+              class="px-5 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all">
+      Ajouter
+      </button>
+    </div>
+  </form>
+</div>
